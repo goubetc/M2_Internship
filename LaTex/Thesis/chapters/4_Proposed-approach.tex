@@ -1,0 +1,58 @@
+\chapter{Proposed approach}
+We propose to use iterative reconstruction with the algorithm described by \cite{goldstein2009split}. Split Bregman algorithm gives a solution to an L1-L2 constrained problem. We will here describe the bregman iteration and it's application to L2 minimisation reconstructions which will be used in our algorithm.
+
+\section{Split Bregman iterative reconstruction}
+    \subsection{Split Bregman iteration}
+    Using Split Bregman we wish to solve the constrained reconstruction optimization problem described in the section \ref{}:
+    \begin{equation}
+        \min\limits_{u}||\nabla_u||_1 \mbox{ such that } Fu=f
+        \label{Eq:ConstPblm}
+    \end{equation}
+ Such constrained problem problems are difficult to solve directly. For this reason we need to define a new unconstrained problem. Luckily it is possible to approximate (\ref{Eq:ConstPblm}) as:
+    \begin{equation}
+        \min_{u}||\nabla_u||_1 + \frac{\lambda}{2}||Fu-f||_2^2
+    \end{equation}
+    
+    The Bregman iteration allows us to reduce \ref{Eq:ConstPblm} in even shorter unconstrained problems using Bregman distances. These constrained problem can be resolved iteratively as follows:
+    \begin{equation}
+        \begin{aligned}
+            u^{k+1} &= \min_{u} ||\nabla_u||_1 + \frac{\lambda}{2}||Fu - f^k||_2^2 \\
+           f^{k+1} &= f^k + f - Fu^k
+        \end{aligned}
+    \end{equation}
+    \subsection{L1 regularization problem}
+    Our compressed sensing reconstruction method is based on L1 regulation. A more faithful reconstruction problem must be formulated and we will see how to solve it iteratively with split Bregman.\\
+    The idea is to "de-couple" the L1 and L2 parts of our original problem. We wish to minimize the Total Variation $\nabla_u$ of the image and a weight function $H()$. We write the problem as follows:
+    \begin{equation}
+        \label{Eq:L1Const}
+        \min_{u,d}||d||_1 + H(u) \mbox{such that} d = \nabla_u
+    \end{equation}
+    Which can be computed iteratively using Split Bregman iteration as:
+    \begin{equation}
+        \begin{aligned}
+            (u^{k+1},d^{k+1}) &= \min_{u,d} ||d||_1 + H(u) +     \frac{\lambda}{2}||d - \nabla_u - b^k||^2_2\\
+            b^{k+1} &= b^k + \nabla_{u^{k+1}} - d^{k+1}
+    \end{aligned}
+    \end{equation}
+\section{SB-TV-2D reconstruction}
+    isotropic TV denoising pbl: 
+    \begin{equation}
+        \min_{u} ||\nabla_u||_1 \mbox{ such that } ||Fu - f||_2^2 < \delta^2
+    \end{equation}
+    
+    where $\nabla_u = (\nabla_x,\nabla_y)u$
+    \begin{equation}
+        \begin{aligned}
+            u =\\
+            d =
+        \end{aligned}
+    \end{equation}
+\section{SB-TV-3D}
+    pbl: $\alpha ||(\nabla_x,\nabla_y, \nabla_z)u||_1 \mbox{such that} ||Fu - f||_2^2 < \delta^2$
+    
+    \begin{equation}
+        \begin{aligned}
+            u =\\
+            d =
+        \end{aligned}
+    \end{equation}

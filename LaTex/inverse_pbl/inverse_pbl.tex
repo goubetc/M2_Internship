@@ -1,0 +1,36 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\author{Claude Goubet - Juan JFP Abascal}
+\title{Introduction to inverse problem resolution}
+\begin{document}
+\maketitle
+\chapter{Inverse problem and conditioning}
+
+\section{Inverse problem}
+An inverse problem is a situation when you wish to describe a physical model from the results of measurements. As apposed to modelization problem where you estimate the outcome of measurements using the physical model.\\
+Basically, a modelization problem is of the form:
+\begin{equation}
+	A \times x = Y
+\label{ForwardPbl}
+\end{equation}
+Where you estimate a measurement $Y$ of the estimated measurement of element $x$ with a transformation matrix $A$. Hence the known values are $x$ and $A$ and compute $Y$.\\
+The inverse problem is posed as in equation (\ref{ForwardPbl}) although the known values are the measurement $Y$ and the transformation matrix $A$ and we want to infer from them the physical model $x$.\\
+A naive solution to (\ref{ForwardPbl}) in case of inverse problem would be:
+\begin{equation}
+	x = A^{-1} \times Y
+\end{equation}
+Thus this solution requires $A^{-1}$ to be invertable such transformation requires a the problem to be well posed. In the contrary case, other methods must be used in order to avoid using $A^{-1}$.
+
+\section{well- and ill-posed problems}
+
+For the following, let us consider $A$ a squared matrix of size $n \times n$; $x$ of the size $n \times 1$ and $Y$ of the size $n \times 1$.\\
+
+In order for a matrix to be invertable, its rank must be equal to its number of columns. The rank of a matrix being its number of independent rows. 
+
+
+\end{document}
+

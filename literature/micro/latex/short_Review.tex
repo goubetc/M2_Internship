@@ -1,0 +1,81 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cite}
+\author{Claude Goubet}
+\title{Short Review On Low Dose CT Reconstruction}
+\begin{document}
+\maketitle
+
+\section{Introduction}
+	intro about CT and importance for osteoporosis diagnosis + use of SR + low dose problem CS (\cite{[24], [25], [26]})
+
+\section{Dose reduction in SR Micro-CT}
+Multiple CS algorithm were developed for Micro-CT allowing to generate different spacial resolutions. Alternative methods then FBP necessary to recover missing projections. Iterative algorithms are used.
+	\subsection{No SR}
+		SART-L1 \cite{[11],[13]} ASD-POCS TV \cite{[9]}
+	\subsection{CS on SR micro-CT}
+		multiple iterative methods using CGTV (\cite{[12]}) ART with multiple denoising (TV \cite{[3]}; L1 minimisation \cite{[18]}; Discrete packet shrinkage \cite{[2]}) SART (\cite{[1]} with TV \cite{[5]}) OS-SART \cite{[6]}) EST \cite{[15], [16]}  PCCT \cite{[8]}
+		 define resolution for each solution (maybe more details?)
+
+\section{SR Nano-CT}
+	Nano-CT general ref: \cite{[23]} (I can have other references but are mostly about the hardware side, new materials and acquisition methodology, or image post-processing without having used low dose)\\
+	less CS reconstruction experimented	\\
+	Low dose nano OS-SART L1 norm TV \cite{[10]}
+
+\section{Conclusion}
+	A lot of research these past few years of CSCT going toward a improvement of spacial resolution and dose reduction. Yet not so much has been done on Nano scale. In the context of osteoporosis nano scale is mandatory for a accurate diagnosis. Present our objective.
+%\section{previous review}
+%	\cite{[17]}
+	
+%\section{TV}
+%Minimization of total variation (TV) is a well used algorithm on syncrothron CT. In this optimization-based approach a discrete imaging model described by a linear equation system in which the number of equations is determined by that of projection measurements.\\
+
+%Han, X. et al. \cite{[9]} described the adaptive-steepest-descent-progection-onto-convex-sets (ADS-POCS) algorithm, which reconstructs an image through minimizing the image total-variation and enforcing data constraints. Using this algorithm they were able to produce image comparable to usual algorithms using only one sixth of the data. This algorithm was evaluated on a imaging experiments of porcine heart and kidney specimens acquired with a custom-made micro-CT scanner to collect cone-beam data in our specimen-imaging studies\\
+
+%Liang, Z. et al \cite{[10]} imroved the conventional Fourier reconstruction method on nano-CT
+%it is difficult to acquire nano-CT images with high quality by using conventional Fourier reconstruction methods based on limited-angle or few-view projections, utilized the total variation (TV) iterative reconstruction to carry out numerical image and nano-CT image reconstruction with limited-angle and few-view data. \\
+
+% Yang, X et al. \cite{[12]} reduced the number of projections by applying an advanced algebraic technique (optimised CGTV) subject to the minimization of the TV in the reconstructed slice. This problem is formulated in a Lagrangian multiplier fashion with the parameter value determined by appealing to a discrete L-curve in conjunction with a conjugate gradient method. The optimal value of the multiplier is automatically obtained by imposing an independent L-curve criterion.
+% The usefulness of this reconstruction modality is demonstrated for simulated and in vivo data, the latter acquired in parallel-beam imaging experiments using synchrotron radiation.
+ % they were able to reduce the number of projections by 60–75\% \\
+
+%Fahimian, B. P. et al. \cite{[15]} developed new reconstruction algorithms which allow for the incorporation of advanced mathematical regularization constraints, such as the non-local means total variational model, in a manner that is consistent with experimental projections. This method results in an iterative Fourier-based tomographic reconstruction algorithm which incorporates the advanced total variation implementation of the non-local means regularization, in a manner that is strictly consistent with experimentally measured projections. They implemented the method on the absorption and phase contrast x-ray CT modalities, and through a series of experiments and simulations quantify the resulting image quality. This method can reduce the number of projections by 60–75\% in parallel beam modalities, while achieving comparable or better image quality than the conventional reconstructions.
+%\\
+
+%\section{SART/ART}
+%\cite{[1],[6],[18]}
+
+%\section{L1}
+%\cite{[19]}
+
+%\section{Hybrid}
+%\subsection{SART+TV}
+%	\cite{[5]}
+%\subsection{ART+L1}
+%	\cite{[11],[13]}
+%\subsection{TV+L1}
+%	\cite{[14]}
+%\subsection{OS-SART}
+%	\cite{[6]}
+%\section{Douglas-Rachford}
+%	\subsection{packet shrinkage denoising}
+%	\cite{[2]}
+%	\subsection{randomized Kaczmarz algorithms}
+%	\cite{[3]}
+%\section{PBI}
+%	\cite{[4]}
+%\section{PPSST}
+%	\cite{[16]}
+%\section{others}
+%	\cite{[7],[8]}
+
+
+	
+
+\bibliography{biblio.bib}{}
+\bibliographystyle{plain}
+\end{document}

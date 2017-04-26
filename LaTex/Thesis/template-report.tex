@@ -1,0 +1,155 @@
+\documentclass[12pt, a4paper]{memoir} % for a short document
+\usepackage[french,english]{babel}
+
+\usepackage [vscale=0.76,includehead]{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{a4paper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\OnehalfSpacing
+% \setSingleSpace{1.05}
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+
+
+%===================================== packages
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{fullpage}
+\usepackage{mathptmx} % font = times
+\usepackage{helvet} % font sf = helvetica
+\usepackage[latin1]{inputenc}
+\usepackage{relsize}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{booktabs}
+\usepackage{textcomp}%textquotesingle
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{url}
+\usepackage{footnote}
+\usepackage{amsmath}
+%============================================
+\usetikzlibrary{arrows,shapes,positioning,shadows,trees}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+%==============================================
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+%Style des têtes de section, headings, chapitre
+\headstyles{komalike}
+\nouppercaseheads
+\chapterstyle{dash}
+\makeevenhead{headings}{\sffamily\thepage}{}{\sffamily\leftmark} 
+\makeoddhead{headings}{\sffamily\rightmark}{}{\sffamily\thepage}
+\makeoddfoot{plain}{}{}{} % Pages chapitre. 
+\makeheadrule{headings}{\textwidth}{\normalrulethickness}
+%\renewcommand{\leftmark}{\thechapter ---}
+\renewcommand{\chaptername}{\relax}
+\renewcommand{\chaptitlefont}{ \sffamily\bfseries \LARGE}
+\renewcommand{\chapnumfont}{ \sffamily\bfseries \LARGE}
+\setsecnumdepth{subsection}
+
+
+% Title page formatting -- do not change!
+\pretitle{\HUGE\sffamily \bfseries\begin{center}} 
+\posttitle{\end{center}}
+\preauthor{\LARGE  \sffamily \bfseries\begin{center}}
+\postauthor{\par\end{center}}
+\newcommand{\jury}[1]{% 
+\gdef\juryB{#1}} 
+\newcommand{\juryB}{} 
+\newcommand{\session}[1]{% 
+\gdef\sessionB{#1}} 
+\newcommand{\sessionB}{} 
+\newcommand{\option}[1]{% 
+\gdef\optionB{#1}} 
+\newcommand{\optionB} {}
+
+\renewcommand{\maketitlehookd}{% 
+\vfill{}  \large\par\noindent  
+\begin{center}\juryB \bigskip\sessionB\end{center}
+\vspace{-1.5cm}}
+\renewcommand{\maketitlehooka}{% 
+\vspace{-1.5cm}\noindent\includegraphics[height=14ex]{pics/logoINP.png}\hfill\raisebox{2ex}{\includegraphics[height=12ex]{pics/logo-uga.png}}\\
+\bigskip
+\begin{center} \large
+Master of Science in Informatics at Grenoble \\
+Master Math\'ematiques Informatique - sp\'ecialit\'e Informatique \\ 
+option \optionB  \end{center}\vfill}
+% =======================End of title page formatting
+
+\option{Graphics Vision and Robotics} 
+\title{Scalable image reconstruction methods for large data: \\Application to Synchrotron CT of biological samples} %\\\vspace{-1ex}\rule{10ex}{0.5pt} \\sub-title} 
+\author{Claude Goubet}
+\date{Defense Date, 2017} % Delete this line to display the current date
+\jury{
+Research project performed at CREATIS \\\medskip
+Under the supervision of:\\
+Juan F. P. J. Abascal\\\medskip
+Defended before a jury composed of:\\
+Head of the jury\\
+Jury member 1\\
+Jury member 2\\
+}
+\session{June \hfill 2017}
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+%%% BEGIN DOCUMENT
+\begin{document}
+\selectlanguage{English} % french si rapport en français
+\frontmatter
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+%\small
+\setlength{\parskip}{-1pt plus 1pt}
+
+\renewcommand{\abstracttextfont}{\normalfont}
+\abstractintoc
+\begin{abstract} 
+Your abstract goes here... 
+\end{abstract}
+\abstractintoc
+
+\renewcommand\abstractname{Acknowledgement}
+\begin{abstract}
+I would like to express my sincere gratitude to .. for his invaluable assistance and comments in reviewing this report... 
+Good luck :) 
+\end{abstract}
+
+
+\renewcommand\abstractname{R\'esum\'e}
+\begin{abstract} \selectlanguage{French}
+Your abstract in French goes here... 
+\end{abstract}
+\selectlanguage{English}
+
+\cleardoublepage
+
+\tableofcontents* % the asterisk means that the table of contents itself isn't put into the ToC
+\normalsize
+
+\mainmatter
+\SingleSpace
+%==============================CHAPTERS==================
+\include{./chapters/1_Introduction}
+\include{./chapters/2_State-of-the-Art}
+\include{./chapters/3_Problem-statement}
+\include{./chapters/4_Proposed-approach}
+\include{./chapters/5_Methods-evaluation}
+\include{./chapters/6_Conclusion}
+\include{./chapters/7_Appendix}
+%=========================================================
+
+
+%=========================================================
+\backmatter
+
+\bibliographystyle{plain} % plain-fr si rapport en français 
+\bibliography{bibfile.bib}
+
+%\cleardoublepage % Goes to an odd page
+%\pagestyle{empty} % no page number
+%~\newpage % goes to a new even page
+
+\end{document}

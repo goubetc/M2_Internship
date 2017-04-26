@@ -1,0 +1,24 @@
+\begin{thebibliography}{1}
+
+\bibitem{[2]}
+S.~A. Melli, K.~A. Wahid, P.~Babyn, D.~M. Cooper, and V.~P. Gopi.
+\newblock A sparsity-based iterative algorithm for reconstruction of micro-ct
+  images from highly undersampled projection datasets obtained with a
+  synchrotron x-ray source.
+\newblock {\em Review of Scientific Instruments}, 87(12):123701.
+
+\bibitem{mirone2014pyhst2}
+A.~Mirone, E.~Brun, E.~Gouillart, P.~Tafforeau, and J.~Kieffer.
+\newblock The pyhst2 hybrid distributed code for high speed tomographic
+  reconstruction with iterative reconstruction and a priori knowledge
+  capabilities.
+\newblock {\em Nuclear Instruments and Methods in Physics Research},
+  324:41--48.
+
+\bibitem{[19]}
+E.~A. Rashed and H.~Kudo.
+\newblock Statistical image reconstruction from limited projection data with
+  intensity priors.
+\newblock {\em Physics in medicine and biology}, 57(7):2039.
+
+\end{thebibliography}

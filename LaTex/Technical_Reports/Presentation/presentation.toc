@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.36pt}
+\beamer@sectionintoc {1}{Personal studying background and previous projects}{3}{0}{1}
+\beamer@sectionintoc {2}{Context of the M2 project}{4}{0}{2}
+\beamer@sectionintoc {3}{Previous work}{6}{0}{3}
+\beamer@sectionintoc {4}{M2 Project plan}{8}{0}{4}

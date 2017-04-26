@@ -1,0 +1,125 @@
+\begin{thebibliography}{10}
+
+\bibitem{[25]}
+Joy~C Andrews, Eduardo Almeida, Marjolein~CH van~der Meulen, Joshua~S Alwood,
+  Chialing Lee, Yijin Liu, Jie Chen, Florian Meirer, Michael Feser, Jeff Gelb,
+  et~al.
+\newblock Nanoscale x-ray microscopic imaging of mammalian mineralized tissue.
+\newblock {\em Microscopy and Microanalysis}, 16(03):327--336, 2010.
+
+\bibitem{[23]}
+Yu-Tung Chen, Tsung-Yu Chen, Jaemock Yi, Yong~S Chu, Wah-Keat Lee, Cheng-Liang
+  Wang, Ivan~M Kempson, Y~Hwu, Vincent Gajdosik, and G~Margaritondo.
+\newblock Hard x-ray zernike microscopy reaches 30 nm resolution.
+\newblock {\em Optics letters}, 36(7):1269--1271, 2011.
+
+\bibitem{[24]}
+Martin Dierolf, Andreas Menzel, Pierre Thibault, Philipp Schneider, Cameron~M
+  Kewish, Roger Wepf, Oliver Bunk, and Franz Pfeiffer.
+\newblock Ptychographic x-ray computed tomography at the nanoscale.
+\newblock {\em Nature}, 467(7314):436--439, 2010.
+
+\bibitem{[15]}
+Benjamin~P Fahimian, Yu~Mao, Peter Cloetens, and Jianwei Miao.
+\newblock Low-dose x-ray phase-contrast and absorption ct using equally sloped
+  tomography.
+\newblock {\em Physics in medicine and biology}, 55(18):5383, 2010.
+
+\bibitem{[8]}
+T~Gaass, G~Potdevin, M~Bech, PB~No{\"e}l, M~Willner, A~Tapfer, F~Pfeiffer, and
+  A~Haase.
+\newblock Iterative reconstruction for few-view grating-based phase-contrast
+  ct—an in vitro mouse model.
+\newblock {\em EPL (Europhysics Letters)}, 102(4):48001, 2013.
+
+\bibitem{[9]}
+Xiao Han, Junguo Bian, Diane~R Eaker, Timothy~L Kline, Emil~Y Sidky, Erik~L
+  Ritman, and Xiaochuan Pan.
+\newblock Algorithm-enabled low-dose micro-ct imaging.
+\newblock {\em IEEE transactions on medical imaging}, 30(3):606--620, 2011.
+
+\bibitem{[6]}
+Peng He, Hengyong Yu, James Bennett, Paul Ronaldson, Rafidah Zainon, Anthony
+  Butler, Phil Butler, Biao Wei, and Ge~Wang.
+\newblock Energy-discriminative performance of a spectral micro-ct system.
+\newblock {\em Journal of X-ray Science and Technology}, 21(3):335--345, 2013.
+
+\bibitem{[18]}
+Xueli Li and Shuqian Luo.
+\newblock A compressed sensing-based iterative algorithm for ct reconstruction
+  and its possible application to phase contrast imaging.
+\newblock {\em Biomedical engineering online}, 10(1):73, 2011.
+
+\bibitem{[10]}
+Zhiting Liang, Yong Guan, Gang Liu, Rui Bian, Xiaobo Zhang, Ying Xiong, and
+  Yangchao Tian.
+\newblock Reconstruction of limited-angle and few-view nano-ct image via total
+  variation iterative reconstruction.
+\newblock In {\em SPIE Optical Engineering+ Applications}, pages
+  885113--885113. International Society for Optics and Photonics, 2013.
+
+\bibitem{[26]}
+Y~Liu, J~Nelson, C~Holzner, JC~Andrews, and P~Pianetta.
+\newblock Recent advances in synchrotron-based hard x-ray phase contrast
+  imaging.
+\newblock {\em Journal of Physics D: Applied Physics}, 46(49):494001, 2013.
+
+\bibitem{[1]}
+R~Longo, F~Arfelli, R~Bellazzini, U~Bottigli, A~Brez, F~Brun, A~Brunetti,
+  P~Delogu, F~Di~Lillo, D~Dreossi, et~al.
+\newblock Towards breast tomography with synchrotron radiation at elettra:
+  first images.
+\newblock {\em Physics in medicine and biology}, 61(4):1634, 2016.
+
+\bibitem{[5]}
+Yang Lu, Zhenyu Yang, Jun Zhao, and Ge~Wang.
+\newblock Tv-based image reconstruction of multiple objects in a fixed
+  source-detector geometry.
+\newblock {\em Journal of X-ray science and technology}, 20(3):277--289, 2012.
+
+\bibitem{[2]}
+S~Ali Melli, Khan~A Wahid, Paul Babyn, David~ML Cooper, and Varun~P Gopi.
+\newblock A sparsity-based iterative algorithm for reconstruction of micro-ct
+  images from highly undersampled projection datasets obtained with a
+  synchrotron x-ray source.
+\newblock {\em Review of Scientific Instruments}, 87(12):123701, 2016.
+
+\bibitem{[3]}
+Seyed~Ali Melli, Khan~A Wahid, Paul Babyn, James Montgomery, Elisabeth Snead,
+  Ali El-Gayed, Murray Pettitt, Bailey Wolkowski, and Michal Wesolowski.
+\newblock A compressed sensing based reconstruction algorithm for synchrotron
+  source propagation-based x-ray phase contrast computed tomography.
+\newblock {\em Nuclear Instruments and Methods in Physics Research Section A:
+  Accelerators, Spectrometers, Detectors and Associated Equipment},
+  806:307--317, 2016.
+
+\bibitem{[13]}
+Li~Mengjie, Li~Jing, and Sun Yi.
+\newblock Sparse angular differential phase-contrast computed tomography
+  reconstruction using l\~{} 1-norm and curvelet constraints.
+\newblock {\em Acta Optica Sinica}, 1:015, 2014.
+
+\bibitem{[12]}
+Xiaoli Yang, Ralf Hofmann, Robin Dapp, Thomas Van~de Kamp, Tomy dos
+  Santos~Rolo, Xianghui Xiao, Julian Moosmann, Jubin Kashef, and Rainer
+  Stotzka.
+\newblock Tv-based conjugate gradient method and discrete l-curve for few-view
+  ct reconstruction of x-ray in vivo data.
+\newblock {\em Optics express}, 23(5):5368--5387, 2015.
+
+\bibitem{[11]}
+Li~Jing~Sun Yi.
+\newblock L\_1-norm-based differential phase-contrast computerized tomography
+  reconstruction algorithm with sparse angular resolution [j].
+\newblock {\em Acta Optica Sinica}, 3:014, 2012.
+
+\bibitem{[16]}
+Yunzhe Zhao, Emmanuel Brun, Paola Coan, Zhifeng Huang, Aniko Sztr{\'o}kay,
+  Paul~Claude Diemoz, Susanne Liebhardt, Alberto Mittone, Sergei Gasilov,
+  Jianwei Miao, et~al.
+\newblock High-resolution, low-dose phase contrast x-ray tomography for 3d
+  diagnosis of human breast cancers.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  109(45):18290--18294, 2012.
+
+\end{thebibliography}
