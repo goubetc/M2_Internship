@@ -1,9 +1,9 @@
 
 
-cd('/home/goubet/Documents/data/FilesToReadData');
+cd('~/Documents/M2_Internship/data/FilesToReadData');
 
 nameMain    = '../multips_166_2012_femR_1L_120nm_tomo1_';
-pathSave    = '/home/goubet/Documents/data/FilesToReadData';
+pathSave    = '~/Documents/M2_Internship/data/FilesToReadData';
 nameMainSave    = 'multips_166_2012_femR_1L_120nm_stack';
 
 if 1

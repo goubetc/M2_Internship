@@ -1,13 +1,13 @@
-cd('/home/goubet/Documents/data/FilesToReadData');
-addpath('/home/goubet/Documents/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
-addpath('/home/goubet/Documents/data/FilesToReadData/demoSBtronc');
-addpath('/home/goubet/Documents/matLabImplem/sift-0.9.19/sift');
+cd('~/Documents/M2_Internship/data/FilesToReadData');
+addpath('~/Documents/M2_Internship/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
+addpath('~/Documents/M2_Internship/data/FilesToReadData/demoSBtronc');
+addpath('~/Documents/M2_Internship/matLabImplem/sift-0.9.19/sift');
 
 nameMain    = '../multips_166_2012_femR_1L_120nm_tomo1_/multips_166_2012_femR_1L_120nm_tomo1_';
-pathSave    = '/home/goubet/Documents/data//multips_166_2012_femR_1L_120nm_tomo1_';
+pathSave    = '~/Documents/M2_Internship/data//multips_166_2012_femR_1L_120nm_tomo1_';
 nameMainSave    = 'multips_166_2012_femR_1L_120nm_stack';
 
-pathResSave= '/home/goubet/Documents/data/res/SB_Reconstruction/';
+pathResSave= '~/Documents/M2_Internship/data/res/SB_Reconstruction/';
 nameResSave= 'Tronc_Images';
 
 
@@ -22,24 +22,6 @@ load(fullfile(pathSave,[nameMainSave '_target3_3D_img']));
 X       = X - 156/2;
 Y       = Y - 156/2;
 ind     = ((X.^2+Y.^2)<(156/2-5)^2);
-
-%target  = target.*double(ind);
-%target2  = target2.*double(ind);
-%target3  = target3.*double(ind);
-
-
-% %plot targets
-% figure; imagesc(target); colormap gray;colormap(flipud(colormap)); colorbar; 
-%     caxis('auto'); 
-%     title('Target image'); drawnow; %selected(i)]);
-%     
-% figure; imagesc(target2); colormap gray;colormap(flipud(colormap)); colorbar; 
-%     caxis('auto'); 
-%     title('Target image'); drawnow; %selected(i)]);
-% 
-% figure; imagesc(target3); colormap gray;colormap(flipud(colormap)); colorbar; 
-%     caxis('auto'); 
-%     title('Target image'); drawnow; %selected(i)]);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -92,24 +74,24 @@ end
 
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) '_t1-3_5000-10000it'],'recImg', 'exTime', 'err', 'ctrsts', 'recImgnoisy', 'errnoisy', 'ctrstsnoisy','-mat');
+save([fullfile(pathResSave, nameResSave) '_3D_targets1_FuulyToLower'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Results Analysis:
 
-load([fullfile(pathResSave, nameResSave) '_t1_20-1000it'], '-mat');
+load([fullfile(pathResSave, nameResSave) '_3D_targets1_FuulyToLower'], '-mat');
 
 % plot targets
-figure; imagesc(target); colormap gray;colormap(flipud(colormap)); colorbar; 
+figure; imagesc(squeeze(targets1(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     caxis('auto'); 
     title('Target image'); drawnow;
     
-figure; imagesc(target2); colormap gray;colormap; colorbar; 
+figure; imagesc(squeeze(targets2(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     caxis('auto'); 
     title('Target image'); drawnow;
     
-figure; imagesc(target3); colormap gray;colormap; colorbar; 
+figure; imagesc(squeeze(targets3(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     caxis('auto'); 
     title('Target image'); drawnow;
 
@@ -137,16 +119,16 @@ nBproj = 1;
     end
     
 % plot image results
-    imgRec = printRecImg3D(targetIm, nBproj, nBit, recImg, ImgSize, numProj, nBreg, 2);
+    imgRec = printRecImg3D(targetIm, nBproj, nBit, recImg2, ImgSize, numProj, nBreg, 2);
 
 % plot all reconstructed image for 1 target images
     % for a specific iteration number
     for i = 1:length(numProj)
-        printRecImg(targetIm, i, nBit, recImg, ImgSize, numProj, nBreg);
+        printRecImg3D(targetIm, i, nBit, recImg2, ImgSize, numProj, nBreg, 2);
     end
     % for a specific projection number
     for i = 1:length(nBreg)
-        printRecImg(targetIm, nBproj, i, recImg, ImgSize, numProj, nBreg);
+        printRecImg3D(targetIm, nBproj, i, recImg, ImgSize, numProj, nBreg, 2);
     end
 
 % compare execution time
@@ -157,13 +139,13 @@ nBproj = 1;
 
 % compare errors
     %between nb proj
-    [errorProj, ePSNR, tvs] = plotErrorProj3D(targetIm, nBit, err, numProj, nBreg, recImg, targets,2);
+    [errorProj, ePSNR, tvs] = plotErrorProj3D(targetIm, nBit, err, numProj, nBreg, recImg2, targets,2);
     %between nb iterations
     errorIter = plotErrorIter(targetIm, nBproj, err, numProj, nBreg);
     
 % evaluate edges
 targetIm = 1;
-nBit = 4;
+nBit = 1;
 nBproj = 1;
 
     imgRec = printRecImg(targetIm, nBproj, nBit, recImg, ImgSize, numProj, nBreg);
@@ -222,7 +204,7 @@ nBproj = 1;
     %%% Target image
     t = abs(targets{1, targetIm});
     %%% SB Image    
-    imgRec = printRecImg(targetIm, 4, nBit, recImg, ImgSize, numProj, nBreg);
+    imgRec = printRecImg3D(targetIm, 4, nBit, recImg2, ImgSize, numProj, nBreg, 2);
     
     %%% FBP Image
     %[errorFBP, pnoise, tv, imgRec] = plotFBP(targets{1,targetIm}, numProj(1));

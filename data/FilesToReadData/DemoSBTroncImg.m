@@ -1,13 +1,13 @@
-cd('/home/goubet/Documents/data/FilesToReadData');
-addpath('/home/goubet/Documents/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
-addpath('/home/goubet/Documents/data/FilesToReadData/demoSBtronc');
-addpath('/home/goubet/Documents/matLabImplem/sift-0.9.19/sift');
+cd('~/Documents/M2_Internship/data/FilesToReadData');
+addpath('~/Documents/M2_Internship/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
+addpath('~/Documents/M2_Internship/data/FilesToReadData/demoSBtronc');
+addpath('~/Documents/M2_Internship/matLabImplem/sift-0.9.19/sift');
 
 nameMain    = '../multips_166_2012_femR_1L_120nm_tomo1_/multips_166_2012_femR_1L_120nm_tomo1_';
-pathSave    = '/home/goubet/Documents/data//multips_166_2012_femR_1L_120nm_tomo1_';
+pathSave    = '~/Documents/M2_Internship/data//multips_166_2012_femR_1L_120nm_tomo1_';
 nameMainSave    = 'multips_166_2012_femR_1L_120nm_stack';
 
-pathResSave= '/home/goubet/Documents/data/res/SB_Reconstruction/';
+pathResSave= '~/Documents/M2_Internship/data/res/SB_Reconstruction/';
 nameResSave= 'Tronc_Images';
 
 
