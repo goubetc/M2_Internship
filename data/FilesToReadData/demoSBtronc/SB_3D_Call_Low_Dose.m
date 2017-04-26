@@ -25,7 +25,10 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     % Define Fwd and adjoint operators
     A           = @(x)(radon3D(x));
     AT          = @(x)(iradon3D(x));%%%%,output_size CHANGED
-
+    % 2D operators for normalization
+    ANorm       = @(x)(radon(x,thetas, N(1)));
+    ATNorm      = @(x)(iradon(x,thetas,'linear','None',1.0, output_size));
+    
     uretro      = iradon(p,thetas);
     %figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
 
@@ -41,7 +44,7 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
 
     utest = AT(A(target));
     before1=clock;
-    [u,errAll, ctrst]  = TV_SB_3D_Gen(A,AT,f,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
+    [u,errAll, ctrst]  = TV_SB_3D_Gen(A,AT,ANorm,ATNorm,f,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
     timeExec= etime(clock,before1);
 
     function d3D = radon3D(u)
