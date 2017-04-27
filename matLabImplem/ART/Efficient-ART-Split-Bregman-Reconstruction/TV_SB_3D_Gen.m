@@ -120,7 +120,7 @@ it          = 1;
 for outer = 1:nBreg
     for inner = 1:nInner;
         % update u
-        rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+ lambda*Dzt(z-bz)+gamma*u;
+        rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+lambda*Dzt(z-bz)+gamma*u;
         
         u           = reshape(krylov3D(rhs(:)),N);
         
@@ -256,28 +256,28 @@ end
         d(:,cols,:) = u(:,cols,:)-u(:,1,:);
     end
 
-    function d = Dy(u)
+    function d = Dz(u)
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(2:rows,:,:) = u(2:rows,:,:)-u(1:rows-1,:,:);
         d(1,:,:) = u(1,:,:)-u(rows,:,:);
     end
 
-    function d = Dyt(u)
+    function d = Dzt(u)
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(1:rows-1,:,:) = u(1:rows-1,:,:)-u(2:rows,:,:);
         d(rows,:,:) = u(rows,:,:)-u(1,:,:);
     end
 
-    function d = Dz(u)
+    function d = Dy(u)
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(:,:,2:height) = u(:,:,2:height)-u(:,:,1:height-1);
         d(:,:,1) = u(:,:,1)-u(:,:,height);
     end
 
-    function d = Dzt(u)
+    function d = Dyt(u)
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(:,:,1:height-1) = u(:,:,1:height-1)-u(:,:,2:height);
