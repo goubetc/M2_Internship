@@ -1,4 +1,6 @@
 # Efficient-ART-Split-Bregman-Reconstruction
+extention of original work: https://github.com/HGGM-LIM/Efficient-ART-Split-Bregman-Reconstruction
+
 MATLAB demo to use a novel and efficient iterative reconstruction method that alternates the Algebraic Reconstruction Technique (ART) with a Total Variation (TV) denoising step based on the Split Bregman formulation.
  
 The method is **ideal for large scale problems** as it proposes to combine an efficient linear solver with and an efficient denoising method. Here we use ART and the Split Bregman formulation, but these methods can be substituted by the method of choice. 
