@@ -12,7 +12,6 @@ flagNorm    = 1;
 flagDisplay = 0;
 
 % Normalize data
-% normFactor  = getNormalizationFactor(f,N(2));
 normFactor  = getNormalizationFactor(f(1,:,:),N(2));
 
 %  normFactor  = 1
@@ -121,6 +120,7 @@ for outer = 1:nBreg
     for inner = 1:nInner;
         % update u
         rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+lambda*Dzt(z-bz)+gamma*u;
+        % rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+gamma*u;
         
         u           = reshape(krylov3D(rhs(:)),N);
         
@@ -129,7 +129,9 @@ for outer = 1:nBreg
         dz          = Dz(u);
         
         % update x and y
-        [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
+%         [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
+        [x,y]       = shrink2(dx+bx,dy+by,alpha/lambda);
+        z           = shrink1(dz+bz,alpha/lambda);
         
         % update bregman parameters
         bx          = bx+dx-x;
@@ -260,14 +262,16 @@ end
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(2:rows,:,:) = u(2:rows,:,:)-u(1:rows-1,:,:);
-        d(1,:,:) = u(1,:,:)-u(rows,:,:);
+        d(1,:,:) = u(1,:,:)-u(rows,:,:); % comment to remove cyclic boundary condition
+        % d(1,:,:) = u(1,:,:)-u(2,:,:); % uncomment to add mirror condition
     end
 
     function d = Dzt(u)
         [rows,cols,height] = size(u);
         d = zeros(rows,cols,height);
         d(1:rows-1,:,:) = u(1:rows-1,:,:)-u(2:rows,:,:);
-        d(rows,:,:) = u(rows,:,:)-u(1,:,:);
+        d(rows,:,:) = u(rows,:,:)-u(1,:,:); % comment to remove cyclic boundary condition
+        % d(rows,:,:) = u(rows,:,:)-u(rows-1,:,:); % comment to remove cyclic boundary condition
     end
 
     function d = Dy(u)
@@ -284,19 +288,33 @@ end
         d(:,:,height) = u(:,:,height)-u(:,:,1);
     end
 
-%     function [xs,ys] = shrink2(x,y,lambda)
-%         
-%         s = sqrt(x.*conj(x)+y.*conj(y));
-%         ss = s-lambda;
-%         ss = ss.*(ss>0);
-%         
-%         s = s+(s<lambda);
-%         ss = ss./s;
-%         
-%         xs = ss.*x;
-%         ys = ss.*y;
-%         
-%     end
+    function [xs] = shrink1(x,lambda)
+        
+        s = sqrt(x.*conj(x));
+        ss = s-lambda;
+        ss = ss.*(ss>0);
+        
+        s = s+(s<lambda);
+        ss = ss./s;
+        
+        xs = ss.*x;
+                
+    end
+
+
+    function [xs,ys] = shrink2(x,y,lambda)
+        
+        s = sqrt(x.*conj(x)+y.*conj(y));
+        ss = s-lambda;
+        ss = ss.*(ss>0);
+        
+        s = s+(s<lambda);
+        ss = ss./s;
+        
+        xs = ss.*x;
+        ys = ss.*y;
+        
+    end
 
 function [xs,ys,zs] = shrink3(x,y,z,lambda)
         
@@ -355,6 +373,7 @@ function [xs,ys,zs] = shrink3(x,y,z,lambda)
         
         % Laplacian part
         bTV     = lambda*(Dxt(Dx(solMat))+Dyt(Dy(solMat))+Dzt(Dz(solMat)));
+        % bTV     = lambda*(Dxt(Dx(solMat))+Dyt(Dy(solMat)));
         
         % Jacobian part
         bJac    = mu*AT(A(solMat));

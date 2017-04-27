@@ -16,36 +16,42 @@ load(fullfile(pathSave,[nameMainSave '_target_3D_img']));
 load(fullfile(pathSave,[nameMainSave '_target2_3D_img']));
 load(fullfile(pathSave,[nameMainSave '_target3_3D_img']));
 
-
 %%% Normalize gray scale
-targets1 = abs(targets1);
-targetsNorm = zeros(size(targets1));
-for i = 1:size(targets1,1);
-    minint = min(min(squeeze(targets1(i,:,:))));
-    maxint = max(max(squeeze(targets1(i,:,:))));
-    targetsNorm(i,:,:)=((squeeze(targets1(i,:,:))-minint).*0.05)./(maxint-minint);
-end
+% targets1 = abs(targets1);
+% targetsNorm = zeros(size(targets1));
+% for i = 1:size(targets1,1);
+%     minint = min(min(squeeze(targets1(i,:,:))));
+%     maxint = max(max(squeeze(targets1(i,:,:))));
+%     targetsNorm(i,:,:)=((squeeze(targets1(i,:,:))-minint).*255)./(maxint-minint);
+% end
+% imhist(squeeze(targetsNorm(1,:,:)));
+% 
+% for i = 1:size(targets1,2);
+%     minint = min(min(squeeze(targetsNorm(:,i,:))));
+%     maxint = max(max(squeeze(targetsNorm(:,i,:))));
+%     targetsNorm(:,i,:)=((squeeze(targetsNorm(:,i,:))-minint).*0.05)./(maxint-minint);
+% end
+% 
+% for i = 1:size(targets1,2);
+%     minint = min(min(min(targets2)));
+%     maxint = max(max(max(targets2)));
+%     targetsNorm=((targets2-minint).*255)./(maxint-minint);
+% end
 
-for i = 1:size(targets1,2);
-    minint = min(min(squeeze(targetsNorm(:,i,:))));
-    maxint = max(max(squeeze(targetsNorm(:,i,:))));
-    targetsNorm(:,i,:)=((squeeze(targetsNorm(:,i,:))-minint).*0.05)./(maxint-minint);
-end
-
-for i = 1:size(targets1,2);
-    minint = min(min(squeeze(targetsNorm(:,:,i))));
-    maxint = max(max(squeeze(targetsNorm(:,:,i))));
-    targetsNorm(:,:,i)=((squeeze(targetsNorm(:,:,i))-minint).*0.05)./(maxint-minint);
-end
-
-targets1 = targetsNorm;
+%targets1 = targetsNorm;
+nbImages = size(targets1,1);
 
 %Put images in dar circle
 [X Y]   = meshgrid(1:156,1:156);
 X       = X - 156/2;
 Y       = Y - 156/2;
 ind     = ((X.^2+Y.^2)<(156/2-5)^2);
+for i= 1:nbImages
+    targets1(i,:,:)  = squeeze(targets1(i,:,:)).*double(ind);
+    %targets2(i,:,:)  = squeeze(targets2(i,:,:)).*double(ind);
+    %targets3(i,:,:)  = squeeze(targets3(i,:,:)).*double(ind);
 
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -57,13 +63,12 @@ ind     = ((X.^2+Y.^2)<(156/2-5)^2);
 % setting parameters :
 %   target cell array, nbProj table (full dose, half dose, 1/4 dose, 1/10
 %   dose), Number of iterations
-nbImages = size(targets1,1);
 
 
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
 numProj         = [ceil(ImgSize(1)*1.6)];%, ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = [200]; % ,5000, 10000]; 
+nBreg           = [501]; % ,5000, 10000]; 
 
 
 
@@ -95,6 +100,8 @@ for i = 1:nbTargets
     end
 end
 
+
+[recImg(i,p,it,:,:), errStruct, ctrst, exTime(i,p,it)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it));
 
 %save results in matLab File
 save([fullfile(pathResSave, nameResSave) '_3D_targets1_Fuuly_50-1000it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
