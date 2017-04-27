@@ -17,6 +17,29 @@ load(fullfile(pathSave,[nameMainSave '_target2_3D_img']));
 load(fullfile(pathSave,[nameMainSave '_target3_3D_img']));
 
 
+%%% Normalize gray scale
+targets1 = abs(targets1);
+targetsNorm = zeros(size(targets1));
+for i = 1:size(targets1,1);
+    minint = min(min(squeeze(targets1(i,:,:))));
+    maxint = max(max(squeeze(targets1(i,:,:))));
+    targetsNorm(i,:,:)=((squeeze(targets1(i,:,:))-minint).*0.05)./(maxint-minint);
+end
+
+for i = 1:size(targets1,2);
+    minint = min(min(squeeze(targetsNorm(:,i,:))));
+    maxint = max(max(squeeze(targetsNorm(:,i,:))));
+    targetsNorm(:,i,:)=((squeeze(targetsNorm(:,i,:))-minint).*0.05)./(maxint-minint);
+end
+
+for i = 1:size(targets1,2);
+    minint = min(min(squeeze(targetsNorm(:,:,i))));
+    maxint = max(max(squeeze(targetsNorm(:,:,i))));
+    targetsNorm(:,:,i)=((squeeze(targetsNorm(:,:,i))-minint).*0.05)./(maxint-minint);
+end
+
+targets1 = targetsNorm;
+
 %Put images in dar circle
 [X Y]   = meshgrid(1:156,1:156);
 X       = X - 156/2;
@@ -39,8 +62,8 @@ nbImages = size(targets1,1);
 
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
-numProj         = [ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = [200];%, 100, 200];%, 1000]; % ,5000, 10000]; 
+numProj         = [ceil(ImgSize(1)*1.6)];%, ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = [200]; % ,5000, 10000]; 
 
 
 
@@ -65,22 +88,22 @@ for i = 1:nbTargets
             [recImg2(i,p,it,:,:,:), errStruct, ctrst, exTime(i,p,it)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it));
             err(i,p,it) = {struct2cell(errStruct)};
             ctrsts(i,p,it) = {ctrst};
-            [recImgnoisy2(i,p,it,:,:,:), errStruct, ctrst, exTime(i,p,it)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it), 1e4);
-            errnoisy(i,p,it) = {struct2cell(errStruct)};
-            ctrstsnoisy(i,p,it) = {ctrst};
+%             [recImgnoisy2(i,p,it,:,:,:), errStruct, ctrst, exTime(i,p,it)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it), 1e4);
+%             errnoisy(i,p,it) = {struct2cell(errStruct)};
+%             ctrstsnoisy(i,p,it) = {ctrst};
         end
     end
 end
 
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) '_3D_targets1_FuulyToLower'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
+save([fullfile(pathResSave, nameResSave) '_3D_targets1_Fuuly_50-1000it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Results Analysis:
 
-load([fullfile(pathResSave, nameResSave) '_3D_targets1_FuulyToLower'], '-mat');
+load([fullfile(pathResSave, nameResSave) '_3D_targets1_Fuuly_50-1000it'], '-mat');
 
 % plot targets
 figure; imagesc(squeeze(targets1(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
@@ -99,7 +122,7 @@ figure; imagesc(squeeze(targets3(2,:,:))); colormap gray;colormap(flipud(colorma
 
  
 targetIm = 1;
-nBit = 1;    %max4
+nBit = 4;    %max4
 nBproj = 1;
 
 % plot target image
