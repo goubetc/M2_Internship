@@ -1,4 +1,4 @@
-function [uout,err, ctrst] = TV_SB_3D_Gen(A,AT,ANorm,ATNorm,f, N,mu, lambda, gamma, alpha, nInner, nBreg,varargin)
+function [uout,err, ctrst] = TV_SB_3D_Gen_2D(A,AT,ANorm,ATNorm,f, N,mu, lambda, gamma, alpha, nInner, nBreg,varargin)
 % [u] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg)
 % [u,err] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg,uTarget)
 % [u,err] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg,uTarget,optSolver)
@@ -131,17 +131,17 @@ for outer = 1:nBreg
         
         dx          = Dx(u);
         dy          = Dy(u);
-        dz          = Dz(u);
+%        dz          = Dz(u);
         
         % update x and y
-%         [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
+%        [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
         [x,y]       = shrink2(dx+bx,dy+by,alpha/lambda);
-        z           = shrink1(dz+bz,alpha/lambda);
+%        z           = shrink1(dz+bz,alpha/lambda);
         
         % update bregman parameters
         bx          = bx+dx-x;
         by          = by+dy-y;
-        bz          = bz+dz-z;
+        %bz          = bz+dz-z;
     end   % inner loop
     if mod(outer,100) == 0
         uout(outer/100,:,:,:) = u(:,:,:);
