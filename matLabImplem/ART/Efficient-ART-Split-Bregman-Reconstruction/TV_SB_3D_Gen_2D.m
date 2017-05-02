@@ -124,8 +124,8 @@ it          = 1;
 for outer = 1:nBreg
     for inner = 1:nInner;
         % update u
-        rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+lambda*Dzt(z-bz)+gamma*u;
-        %rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+gamma*u;
+        %rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+lambda*Dzt(z-bz)+gamma*u;
+        rhs         = murf+lambda*Dxt(x-bx)+lambda*Dyt(y-by)+gamma*u;
         
         u           = reshape(krylov3D(rhs(:)),N);
         
@@ -143,8 +143,17 @@ for outer = 1:nBreg
         by          = by+dy-y;
         %bz          = bz+dz-z;
     end   % inner loop
-    if mod(outer,100) == 0
-        uout(outer/100,:,:,:) = u(:,:,:);
+    if or(any(outer == [1 25 100]), mod(outer,500) == 0)
+        switch outer
+            case 1
+                uout(1,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            case 25
+                uout(2,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            case 100
+                uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            otherwise
+                uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+        end
     end
     fForw           = A(u);
     f               = f + f0-fForw;
@@ -210,8 +219,8 @@ for outer = 1:nBreg
     uPrev       = u;
 end % outer
 
-if mod(outer,100) ~= 0
-    uout(ceil(outer/100),:,:,:) = u(:,:,:);
+if mod(outer,500) ~= 0
+    uout(ceil(outer/500),:,:,:) = (u(:,:,:)*scaleA)/normFactor;
 end
 
 if flagDisplay == 1 && nargin >= 13
