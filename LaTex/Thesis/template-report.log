@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  27 APR 2017 16:51
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  28 APR 2017 18:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1353,10 +1353,64 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 ]
+
+LaTeX Warning: Citation `[24]' on page 3 undefined on input line 2.
+
+
+LaTeX Warning: Citation `[25]' on page 3 undefined on input line 2.
+
+
+LaTeX Warning: Citation `[26]' on page 3 undefined on input line 2.
+
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 6.
+
+LaTeX Warning: Citation `[11]' on page 3 undefined on input line 7.
+
+
+LaTeX Warning: Citation `[13]' on page 3 undefined on input line 7.
+
+
+LaTeX Warning: Citation `[9]' on page 3 undefined on input line 7.
+
+
+LaTeX Warning: Citation `[12]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[3]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[18]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[2]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[1]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[5]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[6]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[15]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[16]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[8]' on page 3 undefined on input line 9.
+
+
+LaTeX Warning: Citation `[23]' on page 3 undefined on input line 13.
+
+
+LaTeX Warning: Citation `[10]' on page 3 undefined on input line 15.
+
 )
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
@@ -1381,31 +1435,38 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 ]
 
+LaTeX Warning: Citation `goldstein2009split' on page 7 undefined on input line 
+2.
+
+
 LaTeX Warning: Reference `' on page 7 undefined on input line 6.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[7])
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 67--70
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+
+ []
+
+)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [8]
-\openout2 = `./chapters/5_Methods-evaluation.aux'.
-
- (./chapters/5_Methods-evaluation.tex)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[9
+[9]
+\openout2 = `./chapters/5_Methods-evaluation.aux'.
 
-
-
-]
-\openout2 = `./chapters/6_Conclusion.aux'.
-
- (./chapters/6_Conclusion.tex [10
+ (./chapters/5_Methods-evaluation.tex [10
 
 
 
@@ -1414,9 +1475,20 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [11]
+\openout2 = `./chapters/6_Conclusion.aux'.
+
+ (./chapters/6_Conclusion.tex [12
+
+
+
+])
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[13]
 \openout2 = `./chapters/7_Appendix.aux'.
 
- (./chapters/7_Appendix.tex [12
+ (./chapters/7_Appendix.tex [14
 
 
 
@@ -1424,59 +1496,21 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[13] [14
+[15] [16
 
 
-] (./template-report.bbl
-bibitemlist
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.32   ctâ€
-           ”an in vitro mouse model.
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-
-! Package inputenc Error: Keyboard character used is undefined
-(inputenc)                in inputencoding `latin1'.
-
-See the inputenc package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.32   ctâ€”
-            an in vitro mouse model.
-You need to provide a definition with \DeclareInputText 
-or \DeclareInputMath before using this key.
-
-
-Overfull \vbox (14.49998pt too high) has occurred while \output is active []
-
-
-[15
-
-])
+]
+No file template-report.bbl.
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
 (in both cases you will find help in the memoir manual). on input line 155.
 
-
-Overfull \vbox (14.49998pt too high) has occurred while \output is active []
-
-
-[16]
 \tf@toc=\write5
 \openout5 = `template-report.toc'.
 
- (./template-report.aux (./chapters/1_Introduction.aux)
+(./template-report.aux (./chapters/1_Introduction.aux)
 (./chapters/2_State-of-the-Art.aux) (./chapters/3_Problem-statement.aux)
 (./chapters/4_Proposed-approach.aux) (./chapters/5_Methods-evaluation.aux)
 (./chapters/6_Conclusion.aux) (./chapters/7_Appendix.aux))
@@ -1485,11 +1519,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26030 strings out of 493304
- 575173 string characters out of 6139871
- 841763 words of memory out of 5000000
- 28876 multiletter control sequences out of 15000+600000
- 63763 words of font info for 81 fonts, out of 8000000 for 9000
+ 26019 strings out of 493304
+ 575003 string characters out of 6139871
+ 844678 words of memory out of 5000000
+ 28868 multiletter control sequences out of 15000+600000
+ 62051 words of font info for 80 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  61i,12n,74p,727b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1501,7 +1535,7 @@ mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on template-report.pdf (22 pages, 116941 bytes).
+Output written on template-report.pdf (22 pages, 105470 bytes).
 PDF statistics:
  136 PDF objects out of 1000 (max. 8388607)
  82 compressed objects within 1 object stream

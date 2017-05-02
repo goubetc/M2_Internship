@@ -37,16 +37,46 @@ We propose to use iterative reconstruction with the algorithm described by \cite
 \section{SB-TV-2D reconstruction}
     isotropic TV denoising pbl: 
     \begin{equation}
-        \min_{u} ||\nabla_u||_1 \mbox{ such that } ||Fu - f||_2^2 < \delta^2
+        \min_{u} ||\nabla_u||_1 \mbox{ such that } ||Fu - f||_2^2 < \sigma^2
     \end{equation}
     
-    where $\nabla_u = (\nabla_x,\nabla_y)u$
+    where $\nabla_u = (\nabla_x,\nabla_y)u$, $f$ represents the projection space, $F$ the projection operator, $u$ the image domain and $\sigma$ represents the variance of the signal noise.
     \begin{equation}
         \begin{aligned}
-            u =\\
-            d =
+            u^{k+1} &= \min_{u}||\nabla_u||_1 + \ \frac{\lambda}{2}||Fu - f^k||_2^2\\
+            f^{k+1} &= f^k + f - F_u^k
         \end{aligned}
     \end{equation}
+
+	We fall here into an unconstrained problem which is not steight forwardly solved. In order to get a constrained problem we will insert a variable d such that $d = \nabla_u$.\\
+	We can now use the Split Bregman iteration in order to solve our new problem: 
+     \begin{equation}
+        \begin{aligned}
+            u^{k+1} &= \min_{u,d}||d||_1 + \ \frac{\lambda}{2}||Fu - f^k||_2^2 \mbox{ such that } d = \nabla_u\\
+            f^{k+1} &= f^k + f - F_u^k
+        \end{aligned}
+    \end{equation}
+	And get to a solution where L1 and L2 elements of our original problem are spleted into two equations:
+    \begin{equation}
+        \begin{aligned}
+            u^{k+1} &= \min_{u} \frac{\mu}{2}||Fu - f^k||_2^2 + \frac{\lambda}{2} ||d^k - \nabla_u - b^k||_2^2\\
+            d^{k+1} &= \min_{u} ||d||_1 + \frac{\lambda}{2}||d - \nabla_u-b^k||_2^2\\
+            b^{k+1} &= b^k +\nabla_u^{k+1} - d^{k+1}\\
+            f^{k+1} &= f^k + f - F_u^k
+        \end{aligned}
+    \end{equation}
+    Now is left to sole the minimization on the $u^{k+1}$ and $d^{k+1}$ operations. Both operation are differentiable. We are hence get the minimum using the derivative.\\
+\textbf{Solution for u}\\
+\begin{equation}
+	\begin{aligned}
+		u^{k+1} = 
+	\end{aligned}
+\end{equation}
+
+\textbf{Solution for d}\\
+    
+    
+    
 \section{SB-TV-3D}
     pbl: $\alpha ||(\nabla_x,\nabla_y, \nabla_z)u||_1 \mbox{such that} ||Fu - f||_2^2 < \delta^2$
     
