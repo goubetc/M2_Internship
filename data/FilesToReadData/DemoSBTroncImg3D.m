@@ -76,7 +76,7 @@ nbProj          = length(numProj);
 %nbNBreg         = length(nBreg);
 
 recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
-recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/100), nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
 
 exTime          = zeros(nbTargets, nbProj);
 err             = cell(nbTargets, nbProj);
