@@ -31,8 +31,11 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     ANorm       = @(x)(radon(x,thetas, N(1)));
     ATNorm      = @(x)(iradon(x,thetas,'linear','None',1.0, output_size));
     
+    uretro      = iradon(squeeze(f(1,:,:)),thetas);
+    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+
     uretro      = iradon(squeeze(fnoisy(1,:,:)),thetas);
-    %figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
 
     flagNorm    = 0;
 
