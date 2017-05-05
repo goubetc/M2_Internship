@@ -66,8 +66,8 @@ end
 
 ImgSize         = size(targets1, 2);
 targets         = {targets1, targets2, targets3};
-numProj         = [25, 35];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 5000;
+numProj         = [ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)/8];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 3000;
 
 
 % Reserving memory space

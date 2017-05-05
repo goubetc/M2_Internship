@@ -1,7 +1,7 @@
-cd('/home/goubet/Documents/data/FilesToReadData');
-addpath('/home/goubet/Documents/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
+cd('/home/goubet/Documents/M2_Internship/data/FilesToReadData');
+addpath('/home/goubet/Documents/M2_Internship/matLabImplem/ART/Efficient-ART-Split-Bregman-Reconstruction');
 nameMain    = '../multips_166_2012_femR_1L_120nm_tomo1_/multips_166_2012_femR_1L_120nm_tomo1_';
-pathSave    = '/home/goubet/Documents/data//multips_166_2012_femR_1L_120nm_tomo1_';
+pathSave    = '/home/goubet/Documents/M2_Internship/data/multips_166_2012_femR_1L_120nm_tomo1_';
 nameMainSave    = 'multips_166_2012_femR_1L_120nm_stack';
 
 
@@ -42,7 +42,7 @@ end
 
 
 %selected = [1;25;50;100];
-selected = [1:5];
+selected = [1:25];
 ip = 800;
 
 %%%% plot of sinogram 1  25  50  100
