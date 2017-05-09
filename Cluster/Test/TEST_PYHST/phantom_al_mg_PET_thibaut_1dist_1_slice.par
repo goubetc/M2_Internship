@@ -1,0 +1,74 @@
+# HST_SLAVE PARAMETER FILE
+
+# Parameters defining the projection file series
+FILE_PREFIX = /users/goubet/Documents/phantom_al_mg_PET_thibaut_1dist_1_/phantom_al_mg_PET_thibaut_1dist_1_
+NUM_FIRST_IMAGE = 0 # No. of first projection file
+NUM_LAST_IMAGE = 598 # No. of last projection file
+NUMBER_LENGTH_VARIES = NO
+LENGTH_OF_NUMERICAL_PART = 4 # No. of characters
+FILE_POSTFIX = .edf
+FILE_INTERVAL = 1 # Interval between input files
+
+# Parameters defining the projection file format
+NUM_IMAGE_1 = 1200 # Number of pixels horizontally
+NUM_IMAGE_2 = 1830 # Number of pixels vertically
+IMAGE_PIXEL_SIZE_1 = 3.500000 # Pixel size horizontally (microns)
+IMAGE_PIXEL_SIZE_2 = 3.500000 # Pixel size vertically
+
+# Parameters defining background treatment
+SUBTRACT_BACKGROUND = YES # Subtract background from data
+BACKGROUND_FILE = /users/goubet/Documents/phantom_al_mg_PET_thibaut_1dist_1_/dark.edf
+
+# Parameters defining flat-field treatment
+CORRECT_FLATFIELD = YES # Divide by flat-field image
+FLATFIELD_CHANGING = YES # Series of flat-field files
+FLATFIELD_FILE = N.A.
+FF_PREFIX = /users/goubet/Documents/phantom_al_mg_PET_thibaut_1dist_1_/refHST
+FF_NUM_FIRST_IMAGE = 0 # No. of first flat-field file
+FF_NUM_LAST_IMAGE = 599 # No. of last flat-field file
+FF_NUMBER_LENGTH_VARIES = NO
+FF_LENGTH_OF_NUMERICAL_PART = 4 # No. of characters
+FF_POSTFIX = .edf
+FF_FILE_INTERVAL = 300 # Interval between flat-field files
+
+TAKE_LOGARITHM = YES # Take log of projection values
+
+# Parameters defining experiment
+ANGLE_BETWEEN_PROJECTIONS = 0.601002 # Increment angle in degrees
+ROTATION_VERTICAL = YES
+ROTATION_AXIS_POSITION = 601.864088 # Position in pixels
+
+# Parameters defining reconstruction
+OUTPUT_SINOGRAMS = NO # Output sinograms to files or not
+OUTPUT_RECONSTRUCTION = YES # Reconstruct and save or not
+START_VOXEL_1 =      1 # X-start of reconstruction volume
+START_VOXEL_2 =      1 # Y-start of reconstruction volume
+START_VOXEL_3 =    915 # Z-start of reconstruction volume
+END_VOXEL_1 =   1200 # X-end of reconstruction volume
+END_VOXEL_2 =   1200 # Y-end of reconstruction volume
+END_VOXEL_3 =    915 # Z-end of reconstruction volume
+OVERSAMPLING_FACTOR = 4 # 0 = Linear, 1 = Nearest pixel
+ANGLE_OFFSET = 0.000000 # Reconstruction rotation offset angle in degrees
+CACHE_KILOBYTES = 1024 # Size of processor cache (L2) per processor (KBytes)
+SINOGRAM_MEGABYTES = 1000 # Maximum size of sinogram storage (megabytes)
+
+# Parameters extra features PyHST
+DO_CCD_FILTER = YES # CCD filter (spikes)
+CCD_FILTER = "CCD_Filter"
+CCD_FILTER_PARA = {"threshold": 0.040000 }
+DO_SINO_FILTER = NO # Sinogram filter (rings)
+SINO_FILTER = "SINO_Filter"
+ar = Numeric.ones(1200,'f')
+ar[0]=0.0
+ar[2:18]=0.0
+SINO_FILTER_PARA = {"FILTER": ar }
+DO_AXIS_CORRECTION = NO # Axis correction
+AXIS_CORRECTION_FILE = correct.txt
+OPTIONS= { 'padding':'E' , 'axis_to_the_center':'Y' , 'avoidhalftomo':'Y'} # Padding and position axis
+ZEROCLIPVALUE = 0.005 # Minimum value of radiographs after flat / before log
+
+# Parameters defining output file / format
+OUTPUT_FILE = /users/goubet/Documents/Test/TEST_PYHST/OUTPUT/test.vol
+
+# Reconstruction program options
+DISPLAY_GRAPHICS = NO # No images

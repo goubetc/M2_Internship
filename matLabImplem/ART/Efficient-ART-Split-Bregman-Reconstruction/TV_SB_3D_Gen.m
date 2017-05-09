@@ -68,7 +68,7 @@ cols        = N(3);
 profs       = N(1);
 f0          = f;
 u           = zeros(profs,rows,cols);
-uout        = zeros(ceil(nBreg/100),profs,rows,cols); 
+uout        = zeros(ceil(nBreg/500)+3,profs,rows,cols); 
 uPrev       = u;
 x           = zeros(profs,rows,cols);
 y           = zeros(profs,rows,cols);
@@ -143,8 +143,17 @@ for outer = 1:nBreg
         by          = by+dy-y;
         bz          = bz+dz-z;
     end   % inner loop
-    if mod(outer,100) == 0
-        uout(outer/100,:,:,:) = u(:,:,:);
+    if or(any(outer == [1 25 100]), mod(outer,500) == 0)
+        switch outer
+            case 1
+                uout(1,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            case 25
+                uout(2,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            case 100
+                uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+            otherwise
+                uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+        end
     end
     fForw           = A(u);
     f               = f + f0-fForw;
@@ -210,8 +219,8 @@ for outer = 1:nBreg
     uPrev       = u;
 end % outer
 
-if mod(outer,100) ~= 0
-    uout(ceil(outer/100),:,:,:) = u(:,:,:);
+if mod(outer,500) ~= 0
+    uout(ceil(outer/500),:,:,:) = (u(:,:,:)*scaleA)/normFactor;
 end
 
 if flagDisplay == 1 && nargin >= 13

@@ -12,14 +12,16 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     if nargin == 4
         %Add poisson noise
         epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
-        Noise = noise*exp(-p);
+        Noise = noise*exp(-f);
         N_noise = poissrnd(Noise);
-        p = -log(N_noise/noise);
-        idx = isinf(p);
-        p(idx) = -log(epsilon/noise);
-    %     figure; imagesc(p); colormap gray;colormap(flipud(colormap)); colorbar; 
+        fnoisy = -log(N_noise/noise);
+        idx = isinf(fnoisy);
+        fnoisy(idx) = -log(epsilon/noise);
+    %     figure; imagesc(squeeze(f(1,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     %     caxis('auto'); 
     %     title('Projections with poisson noise '); drawnow;
+    else 
+        fnoisy = f;
     end
 
     % Define Fwd and adjoint operators
@@ -29,22 +31,25 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     ANorm       = @(x)(radon(x,thetas, N(1)));
     ATNorm      = @(x)(iradon(x,thetas,'linear','None',1.0, output_size));
     
-    uretro      = iradon(p,thetas);
-    %figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+    uretro      = iradon(squeeze(f(1,:,:)),thetas);
+    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+
+    uretro      = iradon(squeeze(fnoisy(1,:,:)),thetas);
+    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
 
     flagNorm    = 0;
 
     mu          = 1;
     lambda      = 1;
     gamma       = 1e-2;
-    alpha       = 0.001;
+    alpha       = 1;
     nInner      = 1;
     %nBreg       = 1000;
     %arr_idx     = ones(N);
 
     utest = AT(A(target));
     before1=clock;
-    [u,errAll, ctrst]  = TV_SB_3D_Gen(A,AT,ANorm,ATNorm,f,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
+    [u,errAll, ctrst]  = TV_SB_3D_Gen(A,AT,ANorm,ATNorm,fnoisy,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
     timeExec= etime(clock,before1);
 
     function d3D = radon3D(u)

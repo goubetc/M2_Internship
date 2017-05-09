@@ -12,7 +12,7 @@ nameResSave= 'Tronc_Images';
 
 
 %Load troncatured image
-load(fullfile(pathSave,[nameMainSave '_target_3D_img']));
+load(fullfile(pathSave,[nameMainSave '_target_3D_img_25']));
 load(fullfile(pathSave,[nameMainSave '_target2_3D_img']));
 load(fullfile(pathSave,[nameMainSave '_target3_3D_img']));
 
@@ -48,9 +48,8 @@ Y       = Y - 156/2;
 ind     = ((X.^2+Y.^2)<(156/2-5)^2);
 for i= 1:nbImages
     targets1(i,:,:)  = squeeze(targets1(i,:,:)).*double(ind);
-    targets2(i,:,:)  = squeeze(targets2(i,:,:)).*double(ind);
-    targets3(i,:,:)  = squeeze(targets3(i,:,:)).*double(ind);
-
+    %targets2(i,:,:)  = squeeze(targets2(i,:,:)).*double(ind);
+    %targets3(i,:,:)  = squeeze(targets3(i,:,:)).*double(ind);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -66,9 +65,9 @@ end
 
 
 ImgSize         = size(targets1, 2);
-targets         = {targets1, targets2, targets3};
-numProj         = [ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 1000; % ,5000, 10000]; 
+targets         = {targets1};%, targets2, targets3};
+numProj         = [ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 2500; % ,5000, 10000]; 
 
 
 
@@ -76,8 +75,8 @@ nBreg           = 1000; % ,5000, 10000];
 nbTargets       = length(targets);
 nbProj          = length(numProj);
 
-recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/100), nbImages, ImgSize(1), ImgSize(1));
-recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/100), nbImages, ImgSize(1), ImgSize(1));
+recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
 
 exTime          = zeros(nbTargets, nbProj);
 err             = cell(nbTargets, nbProj);
@@ -88,10 +87,10 @@ ctrstsnoisy     = cell(nbTargets, nbProj);
 %reconstruction call
 for i = 1:nbTargets
     for p = 1:nbProj
-            [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
-            err(i,p) = {struct2cell(errStruct)};
-            ctrsts(i,p) = {ctrst};
-            [recImgnoisy2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 1e4);
+%             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
+%             err(i,p) = {struct2cell(errStruct)};
+%             ctrsts(i,p) = {ctrst};
+            [recImgnoisy2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 1e8);
             errnoisy(i,p) = {struct2cell(errStruct)};
             ctrstsnoisy(i,p) = {ctrst};
     end

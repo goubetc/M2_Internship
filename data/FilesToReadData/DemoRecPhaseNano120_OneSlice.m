@@ -1,8 +1,8 @@
 
-cd('/home/goubet/Documents/data/FilesToReadData');
+cd('/home/goubet/Documents/M2_Internship/data/FilesToReadData');
 
 nameMain    = '../multips_166_2012_femR_1L_120nm_tomo1_/multips_166_2012_femR_1L_120nm_tomo1_';
-pathSave    = '/home/goubet/Documents/data//multips_166_2012_femR_1L_120nm_tomo1_';
+pathSave    = '/home/goubet/Documents/M2_Internship/data//multips_166_2012_femR_1L_120nm_tomo1_';
 nameMainSave    = 'multips_166_2012_femR_1L_120nm_stack';
 
 
@@ -66,7 +66,7 @@ title('Slice 1100');
 
 
 %%%%% without zero padding
-selected5 = [1:5];%;25;50;100];
+selected5 = [1:30];%;25;50;100];
 
 N           = size(projAll);
 N(2)/2;
@@ -92,7 +92,7 @@ end
 
 % with zero padding
 
-selected5 = [1:5];%;25;50;100];
+selected5 = [1:30];%;25;50;100];
 
 N           = size(projAll);
 rotAxis     = 1043.5;
@@ -114,6 +114,7 @@ for i= 1:length(selected5)
     drawnow;
 end
 
+imThis25 = imThis2000(1:25,:,:);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 %troncating images
@@ -128,8 +129,20 @@ for i= 1:length(selected5)
         title(['Slice ' num2str(1000 + selected5(i),'%04.0f')]); 
         drawnow;
 end
-        
+
 save(fullfile(pathSave,[nameMainSave '_target_3D_img']),'targets1','-v7.3');
+
+
+targets1 = zeros(25, 156, 156);
+for i= 1:length(selected5-5)
+    targets1(i,:,:) = imThis25(i,1410:(1410+155), 1500:1655);
+    figure; imagesc(squeeze(targets1(i,:,:))); colormap gray; colorbar; 
+        caxis([-0.010 0.001]); 
+        title(['Slice ' num2str(1000 + selected5(i),'%04.0f')]); 
+        drawnow;
+end
+        
+save(fullfile(pathSave,[nameMainSave '_target_3D_img_25']),'targets1','-v7.3');
 
 
 targets2 = zeros(length(selected5), 156, 156);
