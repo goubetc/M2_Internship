@@ -64,18 +64,30 @@ We propose to use iterative reconstruction with the algorithm described by \cite
             b^{k+1} &= b^k +\nabla_u^{k+1} - d^{k+1}\\
             f^{k+1} &= f^k + f - F_u^k
         \end{aligned}
+        \label{uk1min}
     \end{equation}
-    Now is left to sole the minimization on the $u^{k+1}$ and $d^{k+1}$ operations. Both operation are differentiable. We are hence get the minimum using the derivative.\\
-\textbf{Solution for u}\\
+    Now is left to sole the minimization on the $u^{k+1}$ and $d^{k+1}$ operations.
+    \textbf{Solution for u}\\
+     The definition of $u^{k+1}$ in \ref{uk1min} is differentiable. We can hence get the minimum using the derivative. We the get:\\
+
 \begin{equation}
 	\begin{aligned}
-		u^{k+1} = 
+		(\mu F^{T}F + \lambda \nabla^{T}\nabla) u^{k+1} = \mu F^{T}f^{k} + \lambda \nabla^{T}(d^{k}_x - b^{k}_x) 
+	\end{aligned}
+	\begin{aligned}
+		K u^{k+1} = rhs^{k} 
 	\end{aligned}
 \end{equation}
 
 \textbf{Solution for d}\\
-    
-    
+    The expression of $d^{k+1}$ in \ref{uk1min} is not coiples. Hence the solution will be computed thanks to the shrinkage thresholding function:
+    \begin{equation}
+    	shrink(x,\gamma) = \frac{x}{|x|}\times max(|x| - \gamma, 0)
+    \end{equation}
+    so that:
+    \begin{equation}
+    	d^{k+1} =  shrink(\nabla_u^{k+1} + b^k, 1/\lambda)
+    \end{equation}
     
 \section{SB-TV-3D}
     pbl: $\alpha ||(\nabla_x,\nabla_y, \nabla_z)u||_1 \mbox{such that} ||Fu - f||_2^2 < \delta^2$
