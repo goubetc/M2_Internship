@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  28 APR 2017 18:32
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  9 MAY 2017 10:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1338,7 +1338,12 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 ]
 \openout2 = `./chapters/1_Introduction.aux'.
 
- (./chapters/1_Introduction.tex)
+ (./chapters/1_Introduction.tex
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 3.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+))
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -1446,20 +1451,15 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 67--70
+Underfull \hbox (badness 10000) in paragraph at lines 68--72
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 76--77
-
- []
-
-)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[8]
+[8])
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -1519,11 +1519,11 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26019 strings out of 493304
- 575003 string characters out of 6139871
- 844678 words of memory out of 5000000
- 28868 multiletter control sequences out of 15000+600000
- 62051 words of font info for 80 fonts, out of 8000000 for 9000
+ 26045 strings out of 493304
+ 575378 string characters out of 6139871
+ 845723 words of memory out of 5000000
+ 28890 multiletter control sequences out of 15000+600000
+ 62365 words of font info for 81 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  61i,12n,74p,727b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1535,7 +1535,7 @@ mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on template-report.pdf (22 pages, 105470 bytes).
+Output written on template-report.pdf (22 pages, 104696 bytes).
 PDF statistics:
  136 PDF objects out of 1000 (max. 8388607)
  82 compressed objects within 1 object stream
