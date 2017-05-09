@@ -100,7 +100,7 @@ end
 % [recImg(i,p,:,:), errStruct, ctrst, exTime(i,p)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) '_3D_2D_targets1_Fuly_1000it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
+save([fullfile(pathResSave, nameResSave) '_3D_2D_targets1_low_dose_to_Fuly_2500it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
