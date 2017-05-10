@@ -1,18 +1,32 @@
-\chapter{State-of-the-Art}
+\chapter{2	Problem Statement, Analysis and State of the Art}
+\textit{This is a generic title. Replace it with an actual title that describes the context of the work. \\
+Give a clear statement of the research problem, and the current scientific state of the art on this problem.  USe the state of the art to analyse the problem.  Use the analysis to develop a proposal for a possible solution to the problem (or multiple possible solutions).}\\
+\\
+\\
+\section{Problem Statement}
+\begin{itemize}
+	\item 	Goal: isotropic resolution of 10 nm
+	\item 	Technical constraints in radiation dose and data size
+	\item 	Problem: dose reduction implies reconstruction from less data: compressed sensing
+\end{itemize}
+
+\section{State of the Art}
+
+
 	intro about CT and importance for osteoporosis diagnosis + use of SR + low dose problem CS (\cite{[24], [25], [26]})
 
-\section{Dose reduction in SR Micro-CT}
+\subsection{Dose reduction in SR Micro-CT}
 Multiple CS algorithm were developed for Micro-CT allowing to generate different spacial resolutions. Alternative methods then FBP necessary to recover missing projections. Iterative algorithms are used.
-	\subsection{No SR}
+	\subsubsection{No SR}
 		SART-L1 \cite{[11],[13]} ASD-POCS TV \cite{[9]}
-	\subsection{CS on SR micro-CT}
+	\subsubsection{CS on SR micro-CT}
 		multiple iterative methods using CGTV (\cite{[12]}) ART with multiple denoising (TV \cite{[3]}; L1 minimisation \cite{[18]}; Discrete packet shrinkage \cite{[2]}) SART (\cite{[1]} with TV \cite{[5]}) OS-SART \cite{[6]}) EST \cite{[15], [16]}  PCCT \cite{[8]}
 		 define resolution for each solution (maybe more details?)
 
-\section{SR Nano-CT}
+\subsection{SR Nano-CT}
 	Nano-CT general ref: \cite{[23]} (I can have other references but are mostly about the hardware side, new materials and acquisition methodology, or image post-processing without having used low dose)\\
 	less CS reconstruction experimented	\\
 	Low dose nano OS-SART L1 norm TV \cite{[10]}
 
-\section{Wrap-up}
+\subsection{Wrap-up}
 	A lot of research these past few years of CSCT going toward a improvement of spacial resolution and dose reduction. Yet not so much has been done on Nano scale. In the context of osteoporosis nano scale is mandatory for a accurate diagnosis. Present our objective.

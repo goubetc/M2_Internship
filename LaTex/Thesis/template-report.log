@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  9 MAY 2017 10:09
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.4.26)  10 MAY 2017 14:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1114,44 +1114,45 @@ File: pgflibraryfadings.code.tex 2008/02/07 v2.10 (rcs-revision 1.3)
 .code.tex
 File: tikzlibrarytrees.code.tex 2008/02/24 v2.10 (rcs-revision 1.2)
 )
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 39.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 40.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
 (./template-report.aux (./chapters/1_Introduction.aux)
-(./chapters/2_State-of-the-Art.aux) (./chapters/3_Problem-statement.aux)
-(./chapters/4_Proposed-approach.aux) (./chapters/5_Methods-evaluation.aux)
-(./chapters/6_Conclusion.aux) (./chapters/7_Appendix.aux))
+(./chapters/2_State-of-the-Art.aux) (./chapters/3_Theoretical_foundation.aux)
+(./chapters/4_Practical-implementation.aux)
+(./chapters/5_Experimental-Performance.aux) (./chapters/6_Discussion.aux)
+(./chapters/7_Conclusion.aux) (./chapters/8_Appendix.aux))
 \openout1 = `template-report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 97.
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 97.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 97.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 98.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 98.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 97.
-LaTeX Info: Redefining \degres on input line 97.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Info: Redefining \degres on input line 98.
 
 
 Package frenchb.ldf Warning: The definition of \@makecaption has been changed,
 (frenchb.ldf)                frenchb will NOT customise it;
-(frenchb.ldf)                reported on input line 97.
+(frenchb.ldf)                reported on input line 98.
 
-LaTeX Info: Redefining \dots on input line 97.
-LaTeX Info: Redefining \up on input line 97.
+LaTeX Info: Redefining \dots on input line 98.
+LaTeX Info: Redefining \up on input line 98.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1243,28 +1244,28 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.9} into y
 our preamble.
- on input line 97.
+ on input line 98.
 
 <pics/logoINP.png, id=20, 190.7125pt x 120.45pt>
 File: pics/logoINP.png Graphic file (type png)
  <use pics/logoINP.png>
-Package pdftex.def Info: pics/logoINP.png used on input line 101.
+Package pdftex.def Info: pics/logoINP.png used on input line 102.
 (pdftex.def)             Requested size: 119.70135pt x 75.59991pt.
 
 <pics/logo-uga.png, id=21, 224.84pt x 145.54375pt>
 File: pics/logo-uga.png Graphic file (type png)
  <use pics/logo-uga.png>
-Package pdftex.def Info: pics/logo-uga.png used on input line 101.
+Package pdftex.def Info: pics/logo-uga.png used on input line 102.
 (pdftex.def)             Requested size: 100.10666pt x 64.79993pt.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 101.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 102.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <24.88> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 102.
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 102.
  [1
 
 
@@ -1274,13 +1275,13 @@ s/logo-uga.png>]
 
 ]
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 109.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 110.
 
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 127.
+(in both cases you will find help in the memoir manual). on input line 128.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -1290,7 +1291,7 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 ]
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <12> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 129.
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 130.
  (./template-report.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 3.
@@ -1329,101 +1330,73 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
-)
+
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[3] [4
+[3])
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
-]
+
+[4]
 \openout2 = `./chapters/1_Introduction.aux'.
 
  (./chapters/1_Introduction.tex
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 3.
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 5.
 
+Underfull \hbox (badness 10000) in paragraph at lines 7--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--11
+
+ []
+
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 11.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-))
+)
+Underfull \hbox (badness 10000) in paragraph at lines 20--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 20--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--34
+
+ []
+
+
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [1
-
-
-]
-\openout2 = `./chapters/2_State-of-the-Art.aux'.
-
- (./chapters/2_State-of-the-Art.tex [2
-
-
-
-]
-
-LaTeX Warning: Citation `[24]' on page 3 undefined on input line 2.
-
-
-LaTeX Warning: Citation `[25]' on page 3 undefined on input line 2.
-
-
-LaTeX Warning: Citation `[26]' on page 3 undefined on input line 2.
-
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 4.
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 6.
-
-LaTeX Warning: Citation `[11]' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Citation `[13]' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Citation `[9]' on page 3 undefined on input line 7.
-
-
-LaTeX Warning: Citation `[12]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[3]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[18]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[2]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[1]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[5]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[6]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[15]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[16]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[8]' on page 3 undefined on input line 9.
-
-
-LaTeX Warning: Citation `[23]' on page 3 undefined on input line 13.
-
-
-LaTeX Warning: Citation `[10]' on page 3 undefined on input line 15.
-
-)
-Overfull \vbox (14.49998pt too high) has occurred while \output is active []
-
-
-[3]
-\openout2 = `./chapters/3_Problem-statement.aux'.
-
- (./chapters/3_Problem-statement.tex [4
 
 
 
@@ -1431,27 +1404,95 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[5]
-\openout2 = `./chapters/4_Proposed-approach.aux'.
+[2]
+\openout2 = `./chapters/2_State-of-the-Art.aux'.
 
- (./chapters/4_Proposed-approach.tex [6
+ (./chapters/2_State-of-the-Art.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 18.
+
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[3
+
+
+
+])
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[4]
+\openout2 = `./chapters/3_Theoretical_foundation.aux'.
+
+ (./chapters/3_Theoretical_foundation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+)
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[5
 
 
 
 ]
+\openout2 = `./chapters/4_Practical-implementation.aux'.
 
-LaTeX Warning: Citation `goldstein2009split' on page 7 undefined on input line 
-2.
+ (./chapters/4_Practical-implementation.tex [6
 
 
-LaTeX Warning: Reference `' on page 7 undefined on input line 6.
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+
+LaTeX Warning: Reference `' on page 7 undefined on input line 15.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 68--72
+Underfull \hbox (badness 10000) in paragraph at lines 77--81
 
  []
 
@@ -1464,31 +1505,87 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [9]
-\openout2 = `./chapters/5_Methods-evaluation.aux'.
+\openout2 = `./chapters/5_Experimental-Performance.aux'.
 
- (./chapters/5_Methods-evaluation.tex [10
+ (./chapters/5_Experimental-Performance.tex [10
 
 
 
-])
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [11]
-\openout2 = `./chapters/6_Conclusion.aux'.
+\openout2 = `./chapters/6_Discussion.aux'.
 
- (./chapters/6_Conclusion.tex [12
+ (./chapters/6_Discussion.tex [12
 
 
 
-])
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [13]
-\openout2 = `./chapters/7_Appendix.aux'.
+\openout2 = `./chapters/7_Conclusion.aux'.
 
- (./chapters/7_Appendix.tex [14
+ (./chapters/7_Conclusion.tex [14
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 4--8
+
+ []
+
+)
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[15]
+\openout2 = `./chapters/8_Appendix.aux'.
+
+ (./chapters/8_Appendix.tex [16
 
 
 
@@ -1496,34 +1593,73 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[15] [16
+[17] [18
 
 
-]
-No file template-report.bbl.
+] (./template-report.bbl
+bibitemlist
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32   ctâ€
+           ”an in vitro mouse model.
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+! Package inputenc Error: Keyboard character used is undefined
+(inputenc)                in inputencoding `latin1'.
+
+See the inputenc package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32   ctâ€”
+            an in vitro mouse model.
+You need to provide a definition with \DeclareInputText 
+or \DeclareInputMath before using this key.
+
+
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[19
+
+])
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 155.
+(in both cases you will find help in the memoir manual). on input line 157.
 
+
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[20]
 \tf@toc=\write5
 \openout5 = `template-report.toc'.
 
-(./template-report.aux (./chapters/1_Introduction.aux)
-(./chapters/2_State-of-the-Art.aux) (./chapters/3_Problem-statement.aux)
-(./chapters/4_Proposed-approach.aux) (./chapters/5_Methods-evaluation.aux)
-(./chapters/6_Conclusion.aux) (./chapters/7_Appendix.aux))
+ (./template-report.aux (./chapters/1_Introduction.aux)
+(./chapters/2_State-of-the-Art.aux) (./chapters/3_Theoretical_foundation.aux)
+(./chapters/4_Practical-implementation.aux)
+(./chapters/5_Experimental-Performance.aux) (./chapters/6_Discussion.aux)
+(./chapters/7_Conclusion.aux) (./chapters/8_Appendix.aux))
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 26045 strings out of 493304
- 575378 string characters out of 6139871
- 845723 words of memory out of 5000000
- 28890 multiletter control sequences out of 15000+600000
- 62365 words of font info for 81 fonts, out of 8000000 for 9000
+ 26071 strings out of 493304
+ 576054 string characters out of 6139871
+ 846700 words of memory out of 5000000
+ 28904 multiletter control sequences out of 15000+600000
+ 65507 words of font info for 84 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  61i,12n,74p,727b,609s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1535,10 +1671,10 @@ mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/symbol/usyr.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texli
 ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on template-report.pdf (22 pages, 104696 bytes).
+Output written on template-report.pdf (26 pages, 123906 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
- 82 compressed objects within 1 object stream
+ 149 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  119 words of extra memory for PDF output out of 10000 (max. 10000000)
 
