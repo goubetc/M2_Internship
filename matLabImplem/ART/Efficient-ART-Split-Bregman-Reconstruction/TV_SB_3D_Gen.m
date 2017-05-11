@@ -135,15 +135,15 @@ for outer = 1:nBreg
         
         % update x and y
 %         [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
-        [x,y]       = shrink2(dx+bx,dy+by,alpha/lambda);
-        z           = shrink1(dz+bz,alpha/lambda);
+        [x,y]       = shrink2(dx+bx,dy+by,alpha(1)/lambda);
+        z           = shrink1(dz+bz,alpha(2)/lambda);
         
         % update bregman parameters
         bx          = bx+dx-x;
         by          = by+dy-y;
         bz          = bz+dz-z;
     end   % inner loop
-    if or(any(outer == [1 25 100]), mod(outer,500) == 0)
+    if or(any(outer == [1 25 100]), mod(outer,25) == 0)
         switch outer
             case 1
                 uout(1,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
@@ -152,7 +152,7 @@ for outer = 1:nBreg
             case 100
                 uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
             otherwise
-                uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+%                 uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
         end
     end
     fForw           = A(u);

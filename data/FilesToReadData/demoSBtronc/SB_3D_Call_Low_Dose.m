@@ -1,4 +1,4 @@
-function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBreg, noise)
+function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBreg, noise, gamma, alpha, lambda, mu, f)
 
     sizeImg= size(target);
     output_size = sizeImg(2);
@@ -8,8 +8,8 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     tmpImg(:,:) = target(1,:,:);
     p           = radon(tmpImg, thetas);
     N           = size(p);
-    f           = radon3D(target);
-    if nargin == 4
+    %f           = radon3D(target);
+    if nargin == 4 || noise ~= 0
         %Add poisson noise
         epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
         Noise = noise*exp(-f);
@@ -38,11 +38,13 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
 
     flagNorm    = 0;
-
-    mu          = 1;
-    lambda      = 1;
-    gamma       = 1e-2;
-    alpha       = 1;
+    if nargin <= 4
+        mu          = 1;
+        lambda      = 1;
+        gamma       = 1e-2;
+        alpha       = 10;
+    end
+    
     nInner      = 1;
     %nBreg       = 1000;
     %arr_idx     = ones(N);

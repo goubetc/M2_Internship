@@ -63,7 +63,7 @@ end
 %   target cell array, nbProj table (full dose, half dose, 1/4 dose, 1/10
 %   dose), Number of iterations
 
-
+targets1 = squeeze(targets1(1:2,:,:));
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
 numProj         = [ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
@@ -96,17 +96,103 @@ for i = 1:nbTargets
     end
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%ù
+%Tune parameters
+
+targets1 = squeeze(targets1(1:2,:,:));
+ImgSize         = size(targets1, 2);
+targets         = {targets1};%, targets2, targets3};
+numProj         = [ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 1500; % ,5000, 10000]; 
+
+%test 1
+test = [10e-1, 1, 1, 1;
+        10e-2, 1, 1, 1;
+        10e-4, 1, 1, 1;
+        10e-6, 1, 1, 1;
+        10e-2, 1, 0.1, 0.1;
+        10e-2, 1, 0.01, 0.01;
+        10e-2, 1, 1, 2;
+        10e-2, 1, 1, 5;
+        10e-2, 0.1, 1, 1;
+        10e-2, 10, 1, 1];
+    
+%test 2
+test = [
+    ];
+
+nbTargets       = length(targets);
+nbProj          = length(numProj);
+
+recImgnoisy2     = zeros(nbTargets, nbProj, size(test,1), ceil(nBreg/500)+3, 2, ImgSize(1), ImgSize(1));
+errnoisy        = cell(nbTargets,size(test,1), nbProj);
+ctrsts          = cell(nbTargets,size(test,1), nbProj);
+exTime          = zeros(nbTargets,size(test,1), nbProj);
+
+%reconstruction call
+for i = 1:nbTargets
+    for p = 1:nbProj
+%             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
+%             err(i,p) = {struct2cell(errStruct)};
+%             ctrsts(i,p) = {ctrst};
+        for numtest = 1:size(test,1)
+            gamma =     test(numtest,1);
+            alpha =     test(numtest,2);
+            lambda =    test(numtest,3);
+            mu =        test(numtest,4);
+            nInner =    1;
+            [recImgnoisy2(i,p,numtest,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 1e8, gamma, alpha, lambda, mu);
+            errnoisy(i,p,numtest) = {struct2cell(errStruct)};
+            ctrstsnoisy(i,p,numtest) = {ctrst};
+        end
+        
+    end
+end
+
+%%%%%%%
+% plot convergence test 1
+figure, plot(errnoisy{1,1,1}{1},'b');
+hold on;
+plot(errnoisy{1,1,2}{1},'y');
+plot(errnoisy{1,1,3}{1},'m');
+plot(errnoisy{1,1,4}{1},'c');
+
+figure, 
+plot(errnoisy{1,1,2}{1},'y');hold on;
+plot(errnoisy{1,1,5}{1},'r');
+plot(errnoisy{1,1,6}{1},'g');
+legend('\mu=1, \lambda=1','\mu=0.1, \lambda=0.1','\mu=0.01, \lambda=0.01')
+
+figure,
+plot(errnoisy{1,1,2}{1},'y');hold on;
+plot(errnoisy{1,1,7}{1},'b--');
+plot(errnoisy{1,1,8}{1},'g--');
+legend('\mu=1','\mu=2','\mu=5')
+
+figure,
+plot(errnoisy{1,1,2}{1},'y');hold on;
+plot(errnoisy{1,1,9}{1},'m--');
+plot(errnoisy{1,1,10}{1},'c--');
+hold off;
+legend('\alpha=1','\alpha=0.1','\alpha=10')
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+%find minimum in each test
+minimums = zeros(size(test,1),1);
+for i = 1:size(test,1)
+   minimums(i) = min(errnoisy{1,1,i}{1});
+end
 
 % [recImg(i,p,:,:), errStruct, ctrst, exTime(i,p)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) '_3D_2D_targets1_low_dose_to_Fuly_2500it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
+save([fullfile(pathResSave, nameResSave) 'parameters_tunig'], 'exTime',  'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');%,'err','recImg2','-mat');
 
-
+%_3D_2D_targets1_low_dose_to_Fuly_2500it
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Results Analysis:
 
-load([fullfile(pathResSave, nameResSave) '_3D_targets1_Fuuly_50-1000it'], '-mat');
+load([fullfile(pathResSave, nameResSave) '_3D_2D_targets1_low_dose_to_Fuly_2500it'], '-mat');
 
 % plot targets
 figure; imagesc(squeeze(targets1(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
@@ -121,9 +207,18 @@ figure; imagesc(squeeze(targets3(2,:,:))); colormap gray;colormap(flipud(colorma
     caxis('auto'); 
     title('Target image'); drawnow;
 
+recimgnoisy3 = zeros(size(recImgnoisy2,5), size(recImgnoisy2,6), size(recImgnoisy2,4));
+for i = 1:size(recImgnoisy2,4);
+    recimgnoisy3(:,:,i) = squeeze(recImgnoisy2(1,3,8,i,:,:));
+end
 
 
- 
+recimgnoisy3 = abs(recimgnoisy3*1e4);
+fileID = fopen([fullfile(pathResSave, nameResSave) '25_projection.raw'],'w');
+fwrite(fileID,recimgnoisy3, 'uint32');
+fclose(fileID);
+
+  
 targetIm = 1;
 nBit = 1;    %max4
 nBproj = 1;
