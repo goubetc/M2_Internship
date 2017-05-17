@@ -8,15 +8,22 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
     tmpImg(:,:) = target(1,:,:);
     p           = radon(tmpImg, thetas);
     N           = size(p);
-    %f           = radon3D(target);
-    if nargin == 4 || noise ~= 0
+    if nargin < 9
+        f       = radon3D(target);
+    end
+    if nargin >= 4 && noise ~= 0
         %Add poisson noise
-        epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
-        Noise = noise*exp(-f);
-        N_noise = poissrnd(Noise);
-        fnoisy = -log(N_noise/noise);
-        idx = isinf(fnoisy);
-        fnoisy(idx) = -log(epsilon/noise);
+%         epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
+%         Noise = noise*exp(-f);
+%         N_noise = poissrnd(Noise);
+%         fnoisy = -log(N_noise/noise);
+%         idx = isinf(fnoisy);
+%         fnoisy(idx) = -log(epsilon/noise);
+        fnoisy = zeros(size(f));
+        for im=1:size(f,1)
+            d = squeeze(f(im,:,:));
+            fnoisy(im,:,:) = d+(noise*max(d(:)))*randn(size(d));
+        end
     %     figure; imagesc(squeeze(f(1,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     %     caxis('auto'); 
     %     title('Projections with poisson noise '); drawnow;
