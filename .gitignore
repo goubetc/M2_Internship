@@ -4,5 +4,5 @@ data/multips_166_2012_femR_1L_120nm_stack_target2_img.mat
 data/multips_166_2012_femR_1L_120nm_stack_target3_img.mat
 data/multips_166_2012_femR_1L_120nm_stack_target_img.mat
 data/multips_166_2012_femR_1L_120nm_tomo1_/
-data/res/*
+data/res/*.mat
 *~
