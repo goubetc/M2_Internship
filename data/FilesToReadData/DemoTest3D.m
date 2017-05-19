@@ -27,7 +27,7 @@ thetas      = (1:numProj)*180/numProj;
 d           = radon(I,thetas);
 
 
-noise       = 1e4;
+
 data = zeros([5, size(d)]);
 for i=1:5
 %     epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values

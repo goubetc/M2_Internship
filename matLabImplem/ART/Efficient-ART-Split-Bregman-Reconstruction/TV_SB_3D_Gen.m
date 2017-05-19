@@ -136,12 +136,12 @@ for outer = 1:nBreg
         % update x and y
 %         [x,y,z]       = shrink3(dx+bx,dy+by,dz+bz,alpha/lambda);
         [x,y]       = shrink2(dx+bx,dy+by,alpha(1)/lambda);
-        z           = shrink1(dz+bz,alpha(2)/lambda);
-        
+        z           = shrink1(dz+bz,(alpha(1)*.1)/lambda);
+        %z = 5*z;
         % update bregman parameters
         bx          = bx+dx-x;
         by          = by+dy-y;
-        bz          = bz+dz-z;
+        bz          = (bz+dz-z)*10;
     end   % inner loop
     if or(any(outer == [1 25 100]), mod(outer,25) == 0)
         switch outer

@@ -22,7 +22,7 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
         fnoisy = zeros(size(f));
         for im=1:size(f,1)
             d = squeeze(f(im,:,:));
-            fnoisy(im,:,:) = d+(noise*max(d(:)))*randn(size(d));
+            fnoisy(im,:,:) = d+(noise*max(nonzeros(d(:)))*randn(size(d)));
         end
     %     figure; imagesc(squeeze(f(1,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
     %     caxis('auto'); 
@@ -44,10 +44,10 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
     
     flagNorm    = 0;
     if nargin <= 4
-        mu          = 1;
-        lambda      = 1;
-        gamma       = 1e-2;
-        alpha       = 1;
+        mu          = 5;
+        lambda      = 5;
+        gamma       = 0;
+        alpha       = 0.05;
     end
     nInner      = 1;
     %nBreg       = 1000;

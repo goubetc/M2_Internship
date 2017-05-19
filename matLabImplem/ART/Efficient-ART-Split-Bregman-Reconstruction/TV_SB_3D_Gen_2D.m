@@ -143,7 +143,7 @@ for outer = 1:nBreg
         by          = by+dy-y;
         %bz          = bz+dz-z;
     end   % inner loop
-    if or(any(outer == [1 25 100]), mod(outer,25) == 0)
+    if or(any(outer == [1 25, 500]), mod(outer,25) == 0)
         switch outer
             case 1
                 uout(1,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
@@ -152,7 +152,7 @@ for outer = 1:nBreg
             case 100
                 uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
             otherwise
-%                 uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+                %uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
         end
     end
     fForw           = A(u);

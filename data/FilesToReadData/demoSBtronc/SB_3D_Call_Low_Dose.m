@@ -7,8 +7,9 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     thetas      = (1:numProj)*180/numProj;
     tmpImg(:,:) = target(1,:,:);
     p           = radon(tmpImg, thetas);
-    N           = size(p);
-    %f           = radon3D(target);
+    N           = size(p);  
+    f           = radon3D(target);
+
     if nargin == 4 || noise ~= 0
         %Add poisson noise
 %        epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
@@ -16,7 +17,11 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
         fnoisy = zeros(size(f));
         for im=1:size(f,1)
             d = squeeze(f(im,:,:));
-            fnoisy(im,:,:) = d+(noise*max(d(:)))*randn(size(d));
+            d2 = d - min(d(:));
+            d2 = d2/max(nonzeros(d2(:)));
+            v = noise*var(d2(:));
+            fnoisy(im,:,:) = abs(max(nonzeros(d(:)))).*(imnoise(d2, 'gaussian', 0, v));
+            %fnoisy(im,:,:) = d+(noise*abs(max(nonzeros(d(:))))*randn(size(d)));
         end
 %         Noise = noise*exp(-f);
 %         N_noise = poissrnd(Noise);
@@ -40,15 +45,15 @@ function [u,errAll, ctrst, timeExec] = SB_3D_Call_Low_Dose(target, numProj, nBre
     uretro      = iradon(squeeze(f(1,:,:)),thetas);
     figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
 
-    uretro      = iradon(squeeze(fnoisy(1,:,:)),thetas);
-    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+    uretro2      = iradon(squeeze(fnoisy(1,:,:)),thetas);
+    figure; imagesc(uretro2); colormap gray;colormap(flipud(colormap)); colorbar; 
 
     flagNorm    = 0;
     if nargin <= 4
-        mu          = 1;
-        lambda      = 1;
-        gamma       = 1e-2;
-        alpha       = 10;
+        mu          = 5;
+        lambda      = 5;
+        gamma       = 0;
+        alpha       = 0.05;
     end
     
     nInner      = 1;

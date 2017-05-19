@@ -63,11 +63,11 @@ end
 %   target cell array, nbProj table (full dose, half dose, 1/4 dose, 1/10
 %   dose), Number of iterations
 
-targets1 = squeeze(targets1(1:2,:,:));
+targets1 = squeeze(targets1(1:5,:,:));
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
-numProj         = [ceil(ImgSize(1)*1.6)/4];%ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 2500; % ,5000, 10000]; 
+numProj         = [ceil((ImgSize(1)*1.6)/8)];%ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 250; % ,5000, 10000]; 
 
 
 
@@ -75,14 +75,20 @@ nBreg           = 2500; % ,5000, 10000];
 nbTargets       = length(targets);
 nbProj          = length(numProj);
 
-recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
-recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+%recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, size(targets1,1), ImgSize(1), ImgSize(1));
 
 exTime          = zeros(nbTargets, nbProj);
-err             = cell(nbTargets, nbProj);
+%err             = cell(nbTargets, nbProj);
 errnoisy        = cell(nbTargets, nbProj);
-ctrsts          = cell(nbTargets, nbProj);
+%ctrsts          = cell(nbTargets, nbProj);
 ctrstsnoisy     = cell(nbTargets, nbProj);
+
+alpha   = 1;
+lambda  = 1;
+mu      = 1;
+gamma   = 1e-4;
+noise   = .10;
 
 %reconstruction call
 for i = 1:nbTargets
@@ -90,7 +96,7 @@ for i = 1:nbTargets
 %             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 %             err(i,p) = {struct2cell(errStruct)};
 %             ctrsts(i,p) = {ctrst};
-            [recImgnoisy2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 0.05);
+            [recImgnoisy(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise);%, gamma, alpha, lambda, mu);
             errnoisy(i,p) = {struct2cell(errStruct)};
             ctrstsnoisy(i,p) = {ctrst};
     end
@@ -102,7 +108,7 @@ end
 targets1 = squeeze(targets1(1:2,:,:));
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
-numProj         = [ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+numProj         = [ceil(ImgSize(1)*1.6)/10];%ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
 nBreg           = 1500; % ,5000, 10000]; 
 
 %test 1: gamma, alpha, lambda, mu
@@ -138,13 +144,18 @@ test = [10e-2, 1, 1, 1; % ref
 test = [0, 0.05, 5, 5;
         0, 0.05, 5, 20];
 
+% test 4
+test = [10e-2, 1, 1, 1;
+        0, 0.05, 5, 5];
+
+
 nbTargets       = length(targets);
 nbProj          = length(numProj);
 
-recImgnoisyTest3     = zeros(nbTargets, nbProj, size(test,1), ceil(nBreg/500)+3, 2, ImgSize(1), ImgSize(1));
-errnoisyTest3        = cell(nbTargets,size(test,1), nbProj);
-ctrstsnoisyTest3          = cell(nbTargets,size(test,1), nbProj);
-exTimeTest3          = zeros(nbTargets,size(test,1), nbProj);
+recImgnoisyTest4     = zeros(nbTargets, nbProj, size(test,1), ceil(nBreg/500)+3, 2, ImgSize(1), ImgSize(1));
+errnoisyTest4        = cell(nbTargets,size(test,1), nbProj);
+ctrstsnoisyTest4     = cell(nbTargets,size(test,1), nbProj);
+exTimeTest4          = zeros(nbTargets,size(test,1), nbProj);
 
 %reconstruction call
 for i = 1:nbTargets
@@ -158,9 +169,9 @@ for i = 1:nbTargets
             lambda =    test(numtest,3);
             mu =        test(numtest,4);
             nInner =    1;
-            [recImgnoisyTest3(i,p,numtest,:,:,:,:), errStruct, ctrst, exTimeTest3(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 1e8, gamma, alpha, lambda, mu);
-            errnoisyTest3(i,p,numtest) = {struct2cell(errStruct)};
-            ctrstsnoisyTest3(i,p,numtest) = {ctrst};
+            [recImgnoisyTest4(i,p,numtest,:,:,:,:), errStruct, ctrst, exTimeTest4(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 1e8, gamma, alpha, lambda, mu);
+            errnoisyTest4(i,p,numtest) = {struct2cell(errStruct)};
+            ctrstsnoisyTest4(i,p,numtest) = {ctrst};
         end
         
     end
@@ -241,6 +252,20 @@ hold off;
 legend('\alpha=.1','\alpha=0.05','\alpha=.005', '\alpha = .001');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Test 3
+figure,
+plot(errnoisyTest2{1,1,1}{1},'b');hold on;
+plot(errnoisyTest3{1,1,1}{1},'c');
+plot(errnoisyTest3{1,1,2}{1},'g');
+legend('ref','\gamma=0, \alpha=0.05, \lambda=5, \mu=5','\gamma=0, \alpha=0.05, \lambda=5, \mu=20');
+
+%%% Test 4
+figure,
+plot(errnoisyTest4{1,1,1}{1},'b');hold on;
+plot(errnoisyTest4{1,1,2}{1},'c');
+legend('ref','\gamma=0, \alpha=0.05, \lambda=5, \mu=5');
+
 %%%%%%%%
 % compare visually reconstructions
 % 
@@ -266,7 +291,7 @@ figure; imagesc(im5); colormap gray;colormap(flipud(colormap)); colorbar;
     %caxis('auto'); 
     title('alpha = 0.001'); drawnow;
 
-%%% mu
+%%% mu 
 im1 = squeeze(recImgnoisyTest2(1,1,5,3,1,:,:));
 figure; imagesc(im1); colormap gray;colormap(flipud(colormap)); colorbar; 
     %caxis('auto'); 
@@ -291,7 +316,69 @@ figure; imagesc(im3); colormap gray;colormap(flipud(colormap)); colorbar;
     %caxis('auto'); 
     title('\mu = \lambda = 8'); drawnow;
     
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Test 3
+% target
+figure; imagesc(squeeze(targets1(2,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
+%caxis('auto'); 
+title('Target image'); drawnow;
+%ref
+im1 = squeeze(recImgnoisyTest2(1,1,1,3,1,:,:));
+figure; imagesc(im1); colormap gray;colormap(flipud(colormap)); colorbar; 
+    %caxis('auto'); 
+    title('reference'); drawnow;
+
+% mu = 5 (best conergence)
+im2 = squeeze(recImgnoisyTest3(1,1,1,3,1,:,:));
+figure; imagesc(im2); colormap gray;colormap(flipud(colormap)); colorbar; 
+    %caxis('auto'); 
+    title('mu = 5'); drawnow;
+% mu = 20
+im3 = squeeze(recImgnoisyTest3(1,1,2,3,1,:,:));
+figure; imagesc(im3); colormap gray;colormap(flipud(colormap)); colorbar; 
+    %caxis('auto'); 
+    title('mu = 20'); drawnow;
+
+figure('Name', 'Parameter tuning 1/4 proj');
+subplot(2,2,1);
+imagesc(squeeze(targets1(2,:,:))); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]);  
+title('Target image'); drawnow;
+subplot(2,2,2);
+imagesc(im1); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]);  
+title('reference');drawnow;
+subplot(2,2,3);
+imagesc(im2); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]); drawnow;
+title('\gamma=0, \alpha=0.05, \lambda=5, \mu=5'); drawnow;
+subplot(2,2,4);
+imagesc(im3); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]); drawnow;
+title('\gamma=0, \alpha=0.05, \lambda=5, \mu=20'); drawnow;
+
+%%% Test 4
+%ref
+im1 = squeeze(recImgnoisyTest4(1,1,1,3,1,:,:));
+im2 = squeeze(recImgnoisyTest4(1,1,2,3,1,:,:));
     
+
+figure('Name', 'Parameter tuning 1/10 proj');
+subplot(2,2,1);
+imagesc(squeeze(targets1(2,:,:))); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]);  
+title('Target image'); drawnow;
+subplot(2,2,2);
+imagesc(im1); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]);  
+title('reference');drawnow;
+subplot(2,2,3);
+imagesc(im2); axis image; colormap gray;colormap(flipud(colormap)); colorbar; 
+caxis([-0.01 0]); drawnow;
+title('\gamma=0, \alpha=0.05, \lambda=5, \mu=5'); drawnow;
+subplot(2,2,4);
+
+
 %find minimum in each test
 minimums = zeros(size(test,1),1);
 for i = 1:size(test,1)
@@ -301,7 +388,7 @@ end
 % [recImg(i,p,:,:), errStruct, ctrst, exTime(i,p)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) 'parameters_tunig'], 'exTime','ctrstsnoisyTest2', 'ctrsts', 'recImgnoisy2','recImgnoisyTest2', 'errnoisy', 'errnoisyTest2', 'ctrstsnoisy','-mat');%,'err','recImg2','-mat');
+save([fullfile(pathResSave, nameResSave) 'parameters_tunig'], 'exTime','ctrstsnoisyTest2', 'ctrstsnoisyTest3', 'ctrsts', 'recImgnoisy2','recImgnoisyTest2','recImgnoisyTest3','recImgnoisyTest3', 'errnoisy', 'errnoisyTest2', 'errnoisyTest3', 'ctrstsnoisy','-mat');%,'err','recImg2','-mat');
 
 %_3D_2D_targets1_low_dose_to_Fuly_2500it
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

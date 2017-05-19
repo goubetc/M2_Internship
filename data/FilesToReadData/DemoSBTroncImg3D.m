@@ -48,8 +48,8 @@ Y       = Y - 156/2;
 ind     = ((X.^2+Y.^2)<(156/2-5)^2);
 for i= 1:nbImages
     targets1(i,:,:)  = squeeze(targets1(i,:,:)).*double(ind);
-    targets2(i,:,:)  = squeeze(targets2(i,:,:)).*double(ind);
-    targets3(i,:,:)  = squeeze(targets3(i,:,:)).*double(ind);
+    %targets2(i,:,:)  = squeeze(targets2(i,:,:)).*double(ind);
+    %targets3(i,:,:)  = squeeze(targets3(i,:,:)).*double(ind);
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -65,9 +65,9 @@ end
 
 
 ImgSize         = size(targets1, 2);
-targets         = {targets1, targets2, targets3};
-numProj         = [ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)/8];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 3000;
+targets         = {targets1};%, targets2, targets3};
+numProj         = [ceil((ImgSize(1)*1.6)/8)];%, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)/8];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 250;
 
 
 % Reserving memory space
@@ -75,14 +75,20 @@ nbTargets       = length(targets);
 nbProj          = length(numProj);
 %nbNBreg         = length(nBreg);
 
-recImg2          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
-recImgnoisy2     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+%recImg          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
 
 exTime          = zeros(nbTargets, nbProj);
-err             = cell(nbTargets, nbProj);
+%err             = cell(nbTargets, nbProj);
 errnoisy        = cell(nbTargets, nbProj);
-ctrsts          = cell(nbTargets, nbProj);
+%ctrsts          = cell(nbTargets, nbProj);
 ctrstsnoisy     = cell(nbTargets, nbProj);
+
+alpha   = 1;
+lambda  = 1;
+mu      = 1;
+gamma   = 1e-4;
+noise   = .5;
 
 %reconstruction call
 for i = 1:nbTargets
@@ -90,13 +96,14 @@ for i = 1:nbTargets
 %             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 %             err(i,p) = {struct2cell(errStruct)};
 %             ctrsts(i,p) = {ctrst};
-            [recImgnoisy2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, 0.05);
+            [recImgnoisy(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise);%, gamma, alpha, lambda, mu);
             errnoisy(i,p) = {struct2cell(errStruct)};
             ctrstsnoisy(i,p) = {ctrst};
     end
 end
 
 
+figure; plot(errnoisy{1,1}{1});
 %[recImg(i,p,:,:), errStruct, ctrst, exTime(i,p)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it));
 
 %save results in matLab File
