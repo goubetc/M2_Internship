@@ -121,7 +121,7 @@ figure; plot(errnoisy{1,1}{1});
 %[recImg(i,p,:,:), errStruct, ctrst, exTime(i,p)] = SB_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg(it));
 
 %save results in matLab File
-save([fullfile(pathResSave, nameResSave) '_3D_allTargets_Alldoses_5000it'],'recImg2', 'exTime', 'err', 'ctrsts', 'recImgnoisy2', 'errnoisy', 'ctrstsnoisy','-mat');
+save([fullfile(pathResSave, nameResSave) '_3D_and_2D_res'],'recImgnoisy3D','recImgnoisy2D', 'errnoisy3D','errnoisy2D','exTime3D','exTime2D','uBests3D','uBests2D','-mat');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
