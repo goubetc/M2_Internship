@@ -1,4 +1,4 @@
-function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, nBreg, noise, gamma, alpha, lambda, mu, f)
+function [u,errAll, ctrst, timeExec, uBest] = SB_3D_2D_Call_Low_Dose(target, numProj, nBreg, noise, gamma, alpha, lambda, mu, f)
 
     sizeImg= size(target);
     output_size = sizeImg(2);
@@ -12,21 +12,18 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
         f       = radon3D(target);
     end
     if nargin >= 4 && noise ~= 0
-        %Add poisson noise
-%         epsilon = 5; % corrects for negative vlaues in the pre logged sinogram data that would otherwise results in infinite projection values
-%         Noise = noise*exp(-f);
-%         N_noise = poissrnd(Noise);
-%         fnoisy = -log(N_noise/noise);
-%         idx = isinf(fnoisy);
-%         fnoisy(idx) = -log(epsilon/noise);
-        fnoisy = zeros(size(f));
+        % add gaussian noise
+         fnoisy = zeros(size(f));
         for im=1:size(f,1)
             d = squeeze(f(im,:,:));
-            fnoisy(im,:,:) = d+(noise*max(nonzeros(d(:)))*randn(size(d)));
+%             d2 = d + max(d(:));
+%             d2 = d2/min(nonzeros(d2(:)));
+%             v = noise*var(d2(:));
+%             dnoise = (imnoise(d2, 'gaussian', 0, v));
+%             mins = min(nonzeros(d(:)));
+%             fnoisy(im,:,:) = mins.* dnoise;
+            fnoisy(im,:,:) = d+(noise*min(nonzeros(d(:)))*randn(size(d)));
         end
-    %     figure; imagesc(squeeze(f(1,:,:))); colormap gray;colormap(flipud(colormap)); colorbar; 
-    %     caxis('auto'); 
-    %     title('Projections with poisson noise '); drawnow;
     else 
         fnoisy = f;
     end
@@ -40,7 +37,7 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
     ATNorm      = @(x)(iradon(x,thetas,'linear','None',1.0, output_size));
     
     uretro      = iradon(squeeze(fnoisy(1,:,:)),thetas);
-    %figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
+    figure; imagesc(uretro); colormap gray;colormap(flipud(colormap)); colorbar; 
     
     flagNorm    = 0;
     if nargin <= 4
@@ -55,7 +52,7 @@ function [u,errAll, ctrst, timeExec] = SB_3D_2D_Call_Low_Dose(target, numProj, n
 
     utest = AT(A(target));
     before1=clock;
-    [u,errAll, ctrst]  = TV_SB_3D_Gen_2D(A,AT,ANorm,ATNorm,fnoisy,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
+    [u,errAll, ctrst, uBest]  = TV_SB_3D_Gen_2D(A,AT,ANorm,ATNorm,fnoisy,[size(target,1) output_size output_size],mu, lambda, gamma, alpha, nInner, nBreg,target);
     timeExec= etime(clock,before1);
 
     function d3D = radon3D(u)

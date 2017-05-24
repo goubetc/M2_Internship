@@ -63,32 +63,41 @@ end
 %   target cell array, nbProj table (full dose, half dose, 1/4 dose, 1/10
 %   dose), Number of iterations
 
+targets1 = squeeze(targets1(1:5,:,:));
+%targets1 = squeeze(targets1(1,:,:));
+%targets1 = permute(repmat(targets1,[1 1 3]),[3 1 2]);
 
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
-numProj         = [ceil((ImgSize(1)*1.6)/8)];%, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)/8];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 250;
+numProj         = [ceil((ImgSize(1)*1.6)/10), ceil((ImgSize(1)*1.6)/7), ceil((ImgSize(1)*1.6)/6), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/2)];
+nBreg           = 300;
 
 
 % Reserving memory space
-nbTargets       = length(targets);
-nbProj          = length(numProj);
+nbTargets        = length(targets);
+nbProj           = length(numProj);
 %nbNBreg         = length(nBreg);
 
 %recImg          = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
-recImgnoisy     = zeros(nbTargets, nbProj, ceil(nBreg/500)+3, nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy2D    = zeros(nbTargets, nbProj, ceil(nBreg/50)+2, nbImages, ImgSize(1), ImgSize(1));
+recImgnoisy3D    = zeros(nbTargets, nbProj, ceil(nBreg/50)+2, nbImages, ImgSize(1), ImgSize(1));
+uBests2D         = zeros(nbTargets, nbProj, nbImages, ImgSize(1), ImgSize(1));
+uBests3D         = zeros(nbTargets, nbProj, nbImages, ImgSize(1), ImgSize(1));
 
-exTime          = zeros(nbTargets, nbProj);
-%err             = cell(nbTargets, nbProj);
-errnoisy        = cell(nbTargets, nbProj);
+exTime3D         = zeros(nbTargets, nbProj);
+exTime2D         = zeros(nbTargets, nbProj);
+errnoisy2D       = cell(nbTargets, nbProj);
+errnoisy3D       = cell(nbTargets, nbProj);
 %ctrsts          = cell(nbTargets, nbProj);
-ctrstsnoisy     = cell(nbTargets, nbProj);
+ctrstsnoisy2D    = cell(nbTargets, nbProj);
+ctrstsnoisy3D    = cell(nbTargets, nbProj);
 
-alpha   = 1;
-lambda  = 1;
-mu      = 1;
-gamma   = 1e-4;
-noise   = .5;
+mu          = 5;
+lambda      = 5;
+gamma       = 0;
+alpha       = 0.05; %lambda/100;%0.05;
+% noise   = 0.001;
+noise   = 0.001;
 
 %reconstruction call
 for i = 1:nbTargets
@@ -96,9 +105,14 @@ for i = 1:nbTargets
 %             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 %             err(i,p) = {struct2cell(errStruct)};
 %             ctrsts(i,p) = {ctrst};
-            [recImgnoisy(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise);%, gamma, alpha, lambda, mu);
-            errnoisy(i,p) = {struct2cell(errStruct)};
-            ctrstsnoisy(i,p) = {ctrst};
+            %3D
+            [recImgnoisy3D(i,p,:,:,:,:), errStruct, ctrst, exTime3D(i,p), uBests3D(i,p,:,:,:)] = SB_3D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise, gamma, alpha, lambda, mu);
+            errnoisy3D(i,p) = {struct2cell(errStruct)};
+            ctrstsnoisy3D(i,p) = {ctrst};
+            %2D
+            [recImgnoisy2D(i,p,:,:,:,:), errStruct, ctrst, exTime2D(i,p), uBests2D(i,p,:,:,:)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise, gamma, alpha, lambda, mu);
+            errnoisy2D(i,p) = {struct2cell(errStruct)};
+            ctrstsnoisy2D(i,p) = {ctrst};
     end
 end
 

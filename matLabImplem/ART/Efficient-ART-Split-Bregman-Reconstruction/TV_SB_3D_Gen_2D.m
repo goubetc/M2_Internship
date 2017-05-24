@@ -1,4 +1,4 @@
-function [uout,err, ctrst] = TV_SB_3D_Gen_2D(A,AT,ANorm,ATNorm,f, N,mu, lambda, gamma, alpha, nInner, nBreg,varargin)
+function [uout,err, ctrst, uBest] = TV_SB_3D_Gen_2D(A,AT,ANorm,ATNorm,f, N,mu, lambda, gamma, alpha, nInner, nBreg,varargin)
 % [u] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg)
 % [u,err] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg,uTarget)
 % [u,err] = TV_SB_3D_Gen(A,AT,f, N,mu, lambda, gamma, alpha, nInner, nBreg,uTarget,optSolver)
@@ -143,16 +143,16 @@ for outer = 1:nBreg
         by          = by+dy-y;
         %bz          = bz+dz-z;
     end   % inner loop
-    if or(any(outer == [1 25, 500]), mod(outer,25) == 0)
+    if or(any(outer == [1 25]), mod(outer,50) == 0)
         switch outer
             case 1
                 uout(1,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
             case 25
                 uout(2,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
-            case 100
-                uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+%             case 100
+%                 uout(3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
             otherwise
-                %uout((outer/500)+3,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
+                 uout((outer/50)+2,:,:,:) = (u(:,:,:)*scaleA)/normFactor;
         end
     end
     fForw           = A(u);
@@ -260,12 +260,15 @@ err.y       = y;
 % undo the normalization so that results are scaled properly
 if nargin >= 13
     u = u/normFactor;
+    uBest = uBest/normFactor;
 else
     u = u/normFactor;
+    uBest = uBest/normFactor;
 end
 
 if flagNorm == 1
-    u = u*scaleA;  
+    u = u*scaleA;
+    uBest = uBest*scaleA;
 end
 %u = u*(scaleA)/(normFactor); % 
 

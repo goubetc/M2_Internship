@@ -66,8 +66,8 @@ end
 targets1 = squeeze(targets1(1:5,:,:));
 ImgSize         = size(targets1, 2);
 targets         = {targets1};%, targets2, targets3};
-numProj         = [ceil((ImgSize(1)*1.6)/8)];%ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
-nBreg           = 250; % ,5000, 10000]; 
+numProj         = [ceil((ImgSize(1)*1.6)/2)];%ceil(ImgSize(1)*1.6)/8, ceil(ImgSize(1)*1.6)/4, ceil(ImgSize(1)*1.6)/2, ceil(ImgSize(1)*1.6)];%ceil(ImgSize(1)*1.6), ceil((ImgSize(1)*1.6)/2), ceil((ImgSize(1)*1.6)/4), ceil((ImgSize(1)*1.6)/10)];
+nBreg           = 1000; % ,5000, 10000]; 
 
 
 
@@ -88,7 +88,7 @@ alpha   = 1;
 lambda  = 1;
 mu      = 1;
 gamma   = 1e-4;
-noise   = .10;
+noise   = .005;
 
 %reconstruction call
 for i = 1:nbTargets
@@ -96,7 +96,7 @@ for i = 1:nbTargets
 %             [recImg2(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg);
 %             err(i,p) = {struct2cell(errStruct)};
 %             ctrsts(i,p) = {ctrst};
-            [recImgnoisy(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise);%, gamma, alpha, lambda, mu);
+            [recImgnoisy(i,p,:,:,:,:), errStruct, ctrst, exTime(i,p)] = SB_3D_2D_Call_Low_Dose(cell2mat(targets(1,i)), numProj(p), nBreg, noise, gamma, alpha, lambda, mu);
             errnoisy(i,p) = {struct2cell(errStruct)};
             ctrstsnoisy(i,p) = {ctrst};
     end
