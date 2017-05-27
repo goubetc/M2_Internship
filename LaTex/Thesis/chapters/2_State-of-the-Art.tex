@@ -1,32 +1,37 @@
-\chapter{2	Problem Statement, Analysis and State of the Art}
+\chapter{Problem Statement, Analysis and State of the Art}
 \textit{This is a generic title. Replace it with an actual title that describes the context of the work. \\
-Give a clear statement of the research problem, and the current scientific state of the art on this problem.  USe the state of the art to analyse the problem.  Use the analysis to develop a proposal for a possible solution to the problem (or multiple possible solutions).}\\
+Give a clear statement of the research problem, and the current scientific state of the art on this problem.  USe the state of the art to analyze the problem.  Use the analysis to develop a proposal for a possible solution to the problem (or multiple possible solutions).}\\
 \\
 \\
 \section{Problem Statement}
 \begin{itemize}
-	\item 	Goal: isotropic resolution of 10 nm
-	\item 	Technical constraints in radiation dose and data size
+	\item 	Goal: Microscopic imaging technique; isotropic resolution of 10 nm the theoretical limit. 
+	\item   Current: State of the art beam-line ID16 \cite{martinez2016id16b} with a lateral spacial resolution around 50 nm, using an energy range of  5 to 70 KeV. Not yet evaluated for bones.
+	\item   Two axis in nano-CT : Phase retrieval and image reconstruction. We will focus in this thesis on the image reconstruction, the phase retrieval phase retrieval was answered by \cite{langer2008phase}
+	\item 	Technical constraints in radiation dose and time constraint, 3000 projections takes multiple hours to acquire. High dose and long exposition causes the sample to change its composition. 
 	\item 	Problem: dose reduction implies reconstruction from less data: compressed sensing
 \end{itemize}
 
-\section{State of the Art}
+\section{Introduction to Low Dose CT}
 
 
 	intro about CT and importance for osteoporosis diagnosis + use of SR + low dose problem CS (\cite{[24], [25], [26]})
 
-\subsection{Dose reduction in SR Micro-CT}
-Multiple CS algorithm were developed for Micro-CT allowing to generate different spacial resolutions. Alternative methods then FBP necessary to recover missing projections. Iterative algorithms are used.
-	\subsubsection{No SR}
-		SART-L1 \cite{[11],[13]} ASD-POCS TV \cite{[9]}
+\subsection{Dose reduction in Micro-CT}
+Multiple CS algorithm were developed for Micro-CT. In respect to the ALARP principle which aims to keep the radiation doses "As Low As Reasonably practicable" and in order to reduce the acquisition time and effect on the sample Alternative reconstruction methods for FBP are necessary. These methods need to be able to reduce the number of projections used for the reconstruction, without affecting the output image quality. Iterative regularized algorithms are used.\\
+Studies of alternative clinical CT reconstruction are review by Pan et al. in \cite{pan2009commercial}. Our focus is on Synchrothron Radiation computational tomography (SR-CT) image reconstruction with less projection. One commonly used method for data reduction is Compressed Sensin (CS). First proposed by Candes et al in 2006 \cite{candes2006stable} it has been used since in many Signal Processing Fields. CS techniques have been developed for tomography such as Split-Bregman reconstruction \cite{goldstein2009split} used by Abascal et al. for Fluorescence diffuse optical tomography \cite{abascal2011fluorescence}. But in particular CS has been used in Micro-CT.
+%	\subsubsection{No SR}
+%		SART-L1 \cite{[11],[13]} ASD-POCS TV \cite{[9]}
+
 	\subsubsection{CS on SR micro-CT}
 		multiple iterative methods using CGTV (\cite{[12]}) ART with multiple denoising (TV \cite{[3]}; L1 minimisation \cite{[18]}; Discrete packet shrinkage \cite{[2]}) SART (\cite{[1]} with TV \cite{[5]}) OS-SART \cite{[6]}) EST \cite{[15], [16]}  PCCT \cite{[8]}
 		 define resolution for each solution (maybe more details?)
 
 \subsection{SR Nano-CT}
-	Nano-CT general ref: \cite{[23]} (I can have other references but are mostly about the hardware side, new materials and acquisition methodology, or image post-processing without having used low dose)\\
+	Few research has been done yet in Nano-CT. Most of them focus on the Phase Retrieval such as Langer who reconstructed images in a spacial resolution of 120-150 nm  \cite{langer2012x}.
+	Nano-CT general ref: \cite{[23]} %(I can have other references but are mostly about the hardware side, new materials and acquisition methodology, or image post-processing without having used low dose)\\
 	less CS reconstruction experimented	\\
-	Low dose nano OS-SART L1 norm TV \cite{[10]}
+	The little research on Low dose nano concerns the OS-SART L1 norm TV algorithm \cite{[10]} not experimented on bone data
 
-\subsection{Wrap-up}
-	A lot of research these past few years of CSCT going toward a improvement of spacial resolution and dose reduction. Yet not so much has been done on Nano scale. In the context of osteoporosis nano scale is mandatory for a accurate diagnosis. Present our objective.
+\section{Proposed solution to dose reduction}
+	If a state of the art acquisition allows to reconstruct images with a spacial resolution of 50 nm at the ESRF, no studies have been done on the feasibility of using of compressed sensing for bone SR-CT. We propose here to use split bregman algorithm for compressed sensing to reduce the number of projection.
